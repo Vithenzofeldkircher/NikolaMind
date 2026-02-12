@@ -649,7 +649,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -719,6 +719,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeaee823eb46b1a4eb227d35697dfe30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_Move
+  _speed: 15
+  _Jump_Force: 90
+  Max_Jump: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
