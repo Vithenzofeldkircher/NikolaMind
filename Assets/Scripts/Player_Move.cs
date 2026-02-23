@@ -56,10 +56,10 @@ public class Player_Move : MonoBehaviour, IJump
     {
         //verifica se há um chão
         //if(collision.gameObject. && !Is_Ground)
-        {
+        
             Is_Ground = true;
             Debug.Log("Há chão");
-        }
+        
     }
 
     public void Jumps()
