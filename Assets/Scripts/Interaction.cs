@@ -18,7 +18,7 @@ public class Interaction : MonoBehaviour
     {
         if (Interactable_Target != null && Input.GetButtonDown("Fire1"))
         {
-            Interactable_Target.Active();//chama o metedo Active() quando o player presiona "f"
+            Interactable_Target.Interagir();//chama o metedo Active() quando o player presiona "f"
         }
     }
 
