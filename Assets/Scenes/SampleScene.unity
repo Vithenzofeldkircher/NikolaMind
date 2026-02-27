@@ -703,7 +703,6 @@ GameObject:
   - component: {fileID: 973456108}
   - component: {fileID: 973456107}
   - component: {fileID: 973456106}
-  - component: {fileID: 973456105}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -711,24 +710,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &973456105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 973456104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 522bad88d81e51a40b9f4ae31f8d098c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogue_System
-  dialogueData: {fileID: 11400000, guid: a47dd82658c963745934d5ef7d885aaa, type: 2}
-  dialogueText: {fileID: 1275028256}
-  nomeText: {fileID: 769988040}
-  typingSpeed: 0.03
-  mudaCenaAoTerminar: 0
-  nextSceneName: 
 --- !u!114 &973456106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,7 +803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 990717819}
   - component: {fileID: 990717820}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle_Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -938,7 +919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.8999939, y: -131.20001}
+  m_AnchoredPosition: {x: -0.9000244, y: -131.20001}
   m_SizeDelta: {x: 0, y: -267.6821}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1123259330
@@ -979,98 +960,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123259328}
   m_CullTransparentMesh: 1
---- !u!1 &1174442736
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1174442737}
-  - component: {fileID: 1174442738}
-  - component: {fileID: 1174442739}
-  m_Layer: 0
-  m_Name: Interaction
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1174442737
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174442736}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1987360123}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1174442738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174442736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 906270b230bd34a4bbf8557e18d8fbc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interaction
-  Distance_Of_Interation: 3
---- !u!61 &1174442739
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174442736}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.43465567}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1.011004}
-  m_EdgeRadius: 0
 --- !u!1 &1275028253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1462881363}
+  - component: {fileID: 1462881364}
   m_Layer: 0
   m_Name: Dialogue_Manager
   m_TagString: Untagged
@@ -1238,6 +1128,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1462881364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462881362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522bad88d81e51a40b9f4ae31f8d098c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue_System
+  dialogueText: {fileID: 1275028256}
+  nomeText: {fileID: 769988040}
+  painelDialogo: {fileID: 1123259328}
+  typingSpeed: 0.03
+  botaoAvancar: Submit
 --- !u!1 &1548315651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1246,7 @@ GameObject:
   - component: {fileID: 1943602129}
   - component: {fileID: 1943602128}
   - component: {fileID: 1943602130}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1358,7 +1265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cf4d062065c28438ba6a2072a3def5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
-  meuDialogo: {fileID: 0}
+  meuDialogo: {fileID: 11400000, guid: a47dd82658c963745934d5ef7d885aaa, type: 2}
 --- !u!4 &1943602129
 Transform:
   m_ObjectHideFlags: 0
@@ -1433,6 +1340,7 @@ GameObject:
   - component: {fileID: 1987360127}
   - component: {fileID: 1987360125}
   - component: {fileID: 1987360126}
+  - component: {fileID: 1987360128}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1454,7 +1362,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1548315652}
-  - {fileID: 1174442737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1987360125
@@ -1543,6 +1450,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_Move
   _Speed_Player: 6
+--- !u!114 &1987360128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987360122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906270b230bd34a4bbf8557e18d8fbc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interaction
+  raioInteracao: 2
+  botaoInteracao: Interact
+  layerInteragivel:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

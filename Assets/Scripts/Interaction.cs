@@ -2,44 +2,48 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-    [Header("NPC's")]
-    public float Distance_Of_Interation = 3f;
-    
-    private IInteractable Interactable_Target;
+    public float raioInteracao = 1.5f;
+    public string botaoInteracao = "Interact"; // Certifique-se que no Inspector esteja escrito Interact
+    public LayerMask layerInteragivel;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Interactable_Target != null && Input.GetButtonDown("Fire1"))
+        // Debug para ver se no console a tecla está sendo apertada
+        if (Input.GetButtonDown(botaoInteracao))
         {
-            Interactable_Target.Interagir();//chama o metedo Active() quando o player presiona "f"
+            Debug.Log("Botão de interação pressionado!");
+            CheckInteracao();
         }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    void CheckInteracao()
     {
-        if (collision.TryGetComponent<IInteractable>(out IInteractable interactable))
+        // um círculo invisível na posição do player para detectar o NPC
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, raioInteracao, layerInteragivel);
+
+        if (hit != null)
         {
-            Interactable_Target = interactable;
-            Debug.Log("Jogador entrou na área de interação."); // aqui vamos utilizar o Interactable para confirmar a entrada do player
+            Debug.Log("Encontrei algo na Layer Interactable: " + hit.name);
+            IInteractable interagivel = hit.GetComponent<IInteractable>();
+
+            if (interagivel != null)
+            {
+                interagivel.Interagir();
+            }
+            else
+            {
+                Debug.LogWarning("O objeto tem a Layer correta, mas falta o script NPC_Interactable!");
+            }
+        }
+        else
+        {
+            Debug.Log("Nenhum objeto interagível por perto.");
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnDrawGizmosSelected()
     {
-        if (collision.TryGetComponent<IInteractable>(out IInteractable interactable) && interactable == Interactable_Target)
-        {
-            Interactable_Target = null;
-            Debug.Log("Jogador saiu da área de interação.");
-        }
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, raioInteracao);
     }
-
-    
 }
