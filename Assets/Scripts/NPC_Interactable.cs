@@ -5,14 +5,31 @@ public class NPC_Interactable : MonoBehaviour, IInteractable
     [Header("Dados do Diálogo")]
     public DialogueData meuDialogo;
 
+    private Dialogue_System sistemaDialogo;
+
+    void Start()
+    {
+        sistemaDialogo = Object.FindFirstObjectByType<Dialogue_System>();
+    }
+
     public void Interagir()
     {
-        // Busca o sistema de diálogo e inicia
-        var sistema = Object.FindFirstObjectByType<Dialogue_System>();
-
-        if (sistema != null && !sistema.EstaEmDialogo())
+        if (sistemaDialogo != null && !sistemaDialogo.EstaEmDialogo())
         {
-            sistema.IniciarDialogo(meuDialogo);
+            sistemaDialogo.IniciarDialogo(meuDialogo);
+        }
+    }
+
+    // Detecta quando o Player sai do Trigger do NPC
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // Se o player se afastar, manda o sistema fechar o painel
+            if (sistemaDialogo != null)
+            {
+                sistemaDialogo.FecharDialogoManualmente();
+            }
         }
     }
 }

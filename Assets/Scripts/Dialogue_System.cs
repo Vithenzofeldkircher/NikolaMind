@@ -40,6 +40,14 @@ public class Dialogue_System : MonoBehaviour
         MostrarFala();
     }
 
+    public void FecharDialogoManualmente()
+    {
+        if (dialogoAtivo)
+        {
+            Finalizar();
+        }
+    }
+
     private void MostrarFala()
     {
         StopAllCoroutines();
