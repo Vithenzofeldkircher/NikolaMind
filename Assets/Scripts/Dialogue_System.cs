@@ -1,6 +1,9 @@
-using TMPro;
-using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEditor;
+using UnityEngine;
 
 public class Dialogue_System : MonoBehaviour
 {
@@ -12,6 +15,10 @@ public class Dialogue_System : MonoBehaviour
     [Header("Configurações")]
     public float typingSpeed = 0.03f;
     public string botaoAvancar = "Submit";
+
+    [Header("Referências de Quest")]
+    public AcceptanceManager acceptanceManager; // Arraste seu script da barra aqui
+    public GameObject botoesEscolha; // O objeto pai dos botões Sim/Não
 
     private DialogueData currentData;
     private int currentLine = 0;
@@ -77,14 +84,62 @@ public class Dialogue_System : MonoBehaviour
     private void AvancarFala()
     {
         currentLine++;
-        if (currentLine < currentData.falas.Count) MostrarFala();
-        else Finalizar();
+        if (currentLine < currentData.falas.Count)
+        {
+            MostrarFala();
+        }
+        else
+        {
+            // Se for fim de quest, mostra os botões em vez de fechar direto
+            if (currentData.ehFimDeQuest)
+            {
+                MostrarBotoesEscolha();
+            }
+            else
+            {
+                Finalizar();
+            }
+        }
+    }
+
+    private void MostrarBotoesEscolha()
+    {
+        isTyping = false;
+        dialogoAtivo = false; // Trava o avanço pelo teclado
+        botoesEscolha.SetActive(true);
+    }
+
+    public void ResponderSucesso()
+    {
+        float pontos = 0;
+        switch (currentData.dificuldade)
+        {
+            case DialogueData.Dificuldade.Facil: pontos = 5f; break;
+            case DialogueData.Dificuldade.Media: pontos = 15f; break;
+            case DialogueData.Dificuldade.Dificil: pontos = 30f; break;
+        }
+
+        acceptanceManager.UpdateAcceptance(pontos);
+        LimparEFinalizar();
+    }
+
+    public void ResponderFalha()
+    {
+        acceptanceManager.UpdateAcceptance(-15f);
+        LimparEFinalizar();
+    }
+
+    private void LimparEFinalizar()
+    {
+        botoesEscolha.SetActive(false);
+        Finalizar();
     }
 
     private void Finalizar()
     {
         dialogoAtivo = false;
         painelDialogo.SetActive(false);
+        currentLine = 0; // Reseta para o próximo diálogo
     }
 
     public bool EstaEmDialogo() => dialogoAtivo;

@@ -8,11 +8,16 @@ public class DialogueData : ScriptableObject
     [Serializable]
     public class Fala
     {
-        public string nomePersonagem;   // nome acima da fala
+        public string nomePersonagem;
         [TextArea(2, 5)]
-        public string texto;            // fala do personagem
-        public int IdPersonagem; //incede para a imagem do personagem
+        public string texto;
+        public int IdPersonagem;
     }
 
     public List<Fala> falas = new List<Fala>();
+
+    [Header("Configurações de Quest (Opcional)")]
+    public bool ehFimDeQuest;
+    public enum Dificuldade { Nenhum, Facil, Media, Dificil }
+    public Dificuldade dificuldade;
 }
