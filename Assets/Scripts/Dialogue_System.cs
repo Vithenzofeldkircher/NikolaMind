@@ -25,6 +25,9 @@ public class Dialogue_System : MonoBehaviour
     private bool isTyping = false;
     private bool dialogoAtivo = false;
 
+    [Header("Dicas Visuais")]
+    public GameObject avisoContinuar;
+
     void Start() => painelDialogo.SetActive(false);
 
     void Update()
@@ -45,6 +48,7 @@ public class Dialogue_System : MonoBehaviour
         dialogoAtivo = true;
         painelDialogo.SetActive(true);
         MostrarFala();
+        Debug.Log("O diálogo começou com: " + data.name);
     }
 
     public void FecharDialogoManualmente()
@@ -64,6 +68,7 @@ public class Dialogue_System : MonoBehaviour
 
     private IEnumerator TypeLine(string line)
     {
+        avisoContinuar.SetActive(false);
         isTyping = true;
         dialogueText.text = "";
         foreach (char c in line)
@@ -72,6 +77,7 @@ public class Dialogue_System : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
         isTyping = false;
+        avisoContinuar.SetActive(true);
     }
 
     private void CompletarTexto()
@@ -79,6 +85,7 @@ public class Dialogue_System : MonoBehaviour
         StopAllCoroutines();
         dialogueText.text = currentData.falas[currentLine].texto;
         isTyping = false;
+        avisoContinuar.SetActive(true);
     }
 
     private void AvancarFala()
@@ -140,6 +147,7 @@ public class Dialogue_System : MonoBehaviour
         dialogoAtivo = false;
         painelDialogo.SetActive(false);
         currentLine = 0; // Reseta para o próximo diálogo
+        avisoContinuar.SetActive(false);
     }
 
     public bool EstaEmDialogo() => dialogoAtivo;

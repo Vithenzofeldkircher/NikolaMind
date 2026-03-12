@@ -16,3 +16,11 @@ MonoBehaviour:
   - nomePersonagem: jerry
     texto: ola
     IdPersonagem: 0
+  - nomePersonagem: jerry
+    texto: Eu sou um boneco de teste
+    IdPersonagem: 0
+  - nomePersonagem: jerry
+    texto: Me use...
+    IdPersonagem: 0
+  ehFimDeQuest: 0
+  dificuldade: 0
