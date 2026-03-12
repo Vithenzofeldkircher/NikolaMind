@@ -22,5 +22,5 @@ MonoBehaviour:
   - nomePersonagem: jerry
     texto: Me use...
     IdPersonagem: 0
-  ehFimDeQuest: 0
-  dificuldade: 0
+  ehFimDeQuest: 1
+  dificuldade: 1
