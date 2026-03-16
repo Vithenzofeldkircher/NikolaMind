@@ -132,7 +132,7 @@ public class Dialogue_System : MonoBehaviour
 
     public void ResponderFalha()
     {
-        acceptanceManager.UpdateAcceptance(-15f);
+        acceptanceManager.UpdateAcceptance(-22f);
         LimparEFinalizar();
     }
 
