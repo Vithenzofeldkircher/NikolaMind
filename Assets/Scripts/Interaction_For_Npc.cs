@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Interaction : MonoBehaviour
+public class Interaction_For_Npc : MonoBehaviour
 {
     public float raioInteracao = 1.5f;
     public string botaoInteracao = "Interact"; // Certifique-se que no Inspector esteja escrito Interact
@@ -28,7 +28,7 @@ public class Interaction : MonoBehaviour
 
             if (interagivel != null)
             {
-                interagivel.Interagir();
+                interagivel.Active();
             }
             else
             {

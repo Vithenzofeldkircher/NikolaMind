@@ -12,7 +12,7 @@ public class NPC_Interactable : MonoBehaviour, IInteractable
         sistemaDialogo = Object.FindFirstObjectByType<Dialogue_System>();
     }
 
-    public void Interagir()
+    public void Active()
     {
         if (sistemaDialogo != null && !sistemaDialogo.EstaEmDialogo())
         {
