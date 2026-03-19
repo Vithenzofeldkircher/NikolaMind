@@ -1,29 +1,59 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; 
+
 public class Life : MonoBehaviour
 {
-    [Header("Configurações da vida")]
-    public float Max_Life = 5f;
-    public float Count_Life;
-    public float Min_Life = 0f;
+    [Header("Configurações de Vida")]
+    public int maxHearts = 5;
+    public int currentHearts;
 
+    [Header("Configurações de UI")]
+    public Image[] heartImages; // Arraste os objetos de Imagem dos corações aqui
+    public Sprite fullHeart;    // Sprite do coração cheio
+    public Sprite emptyHeart;   // Sprite do coração vazio/ tirar a imagem do coração 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentHearts = maxHearts;
+        UpdateHeartsUI();
+    }
 
+    // Método para receber dano
+    public void TakeDamage(int damage)
+    {
+        currentHearts -= damage;
+        currentHearts = Mathf.Clamp(currentHearts, 0, maxHearts);
+
+        UpdateHeartsUI();
+
+        if (currentHearts <= 0)
+        {
+            Die();
+        }
+    }
+
+    // Atualiza visualmente os corações
+    void UpdateHeartsUI()
+    {
+        for (int i = 0; i < heartImages.Length; i++)
+        {
+            if (i < currentHearts)
+            {
+                heartImages[i].sprite = fullHeart;
+                heartImages[i].enabled = true;
+            }
+            else
+            {
+                heartImages[i].enabled = false;
+                // Ou apenas heartImages[i].enabled = false; se quiser que sumam, assim para que fiquem vazios heartImages[i].sprite = emptyHeart;
+            }
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("Você morreu!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
-/*  private void Death()
-  {
-      Count_Life <= Min_Life;
-      Debug.Log("Voce morreu");
-      SceneManager.LoadScene("SampleScene");
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-      Death();
-  }
-}*/
