@@ -14,16 +14,16 @@ public class Life : MonoBehaviour
 
     }
 }
-  /*  private void Death()
-    {
-        Count_Life <= Min_Life;
-        Debug.Log("Voce morreu");
-        SceneManager.LoadScene("SampleScene");
-    }
+/*  private void Death()
+  {
+      Count_Life <= Min_Life;
+      Debug.Log("Voce morreu");
+      SceneManager.LoadScene("SampleScene");
+  }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Death();
-    }
-}/*
+  // Update is called once per frame
+  void Update()
+  {
+      Death();
+  }
+}*/
