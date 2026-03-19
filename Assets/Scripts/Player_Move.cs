@@ -7,9 +7,8 @@ public class Player_Move : MonoBehaviour
     [Header("Configuração do Player")]
     public float _Speed_Player = 2f;
     private Rigidbody2D _rb;
-
-    private Vector2 _Position;
-
+    private float movimentoHorizontal;
+    private float movimentoVertical;
 
     private void Awake()
     {
@@ -25,14 +24,13 @@ public class Player_Move : MonoBehaviour
     void Update()
     {
         //teclas de uso dos comandos de movimento
-
-        _Position = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
+        movimentoHorizontal = Input.GetAxisRaw("Horizontal");
+        movimentoVertical = Input.GetAxisRaw("Vertical");
     }
-
+        
     private void FixedUpdate()
     {
-        _rb.linearVelocity = _Position * _Speed_Player;
+        //_rb.linearVelocity = new Vector2(movimentoHorizontal, movimentoVertical).Normalize* _Speed_Player;
     }
 
 }
