@@ -11,10 +11,10 @@ public class Life : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
 
-    /*private void Death()
+    }
+}
+  /*  private void Death()
     {
         Count_Life <= Min_Life;
         Debug.Log("Voce morreu");
@@ -26,4 +26,4 @@ public class Life : MonoBehaviour
     {
         Death();
     }
-}
+}/*
