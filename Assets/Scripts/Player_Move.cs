@@ -30,7 +30,7 @@ public class Player_Move : MonoBehaviour
         
     private void FixedUpdate()
     {
-        //_rb.linearVelocity = new Vector2(movimentoHorizontal, movimentoVertical).Normalize* _Speed_Player;
+        _rb.linearVelocity = new Vector2(movimentoHorizontal, movimentoVertical).normalized * _Speed_Player;
     }
 
 }
