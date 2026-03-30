@@ -54,6 +54,6 @@ public class Life : MonoBehaviour
     private void Die()
     {
         Debug.Log("Você morreu!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("SampleScene");
     }
 }
