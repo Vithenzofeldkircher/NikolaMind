@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     public float speed = 10f;
     public float life_Time = 3f;
     public int damageAmount = 1;
@@ -28,11 +28,6 @@ public class Bullet : MonoBehaviour
         if (healthScript != null)
         {
             healthScript.TakeDamage(damageAmount);
-            Destroy(gameObject);
-        }
-
-        if (collision.CompareTag("Parede"))
-        {
             Destroy(gameObject);
         }
     }
