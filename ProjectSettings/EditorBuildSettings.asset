@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Tela Inicial.unity
+    guid: 4daa8cfe906e38144aedc875322632a8
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Mini_Game_1.unity
+    guid: 5e57e84dee3004845a4c969d5ca08634
+  - enabled: 1
+    path: Assets/Scenes/Mini_Game_2.unity
+    guid: 4a87598bc63bf664a9673915ad8d919c
+  - enabled: 1
+    path: Assets/Scenes/Mini_Game_3.unity
+    guid: e47a854a6d7cbe94eb8d9ee09abbdfdd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
