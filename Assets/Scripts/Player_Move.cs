@@ -30,6 +30,13 @@ public class Player_Move : MonoBehaviour
         
     private void FixedUpdate()
     {
+        // Se o WireManager disser que NÃO pode mover, cancelamos a velocidade
+        if (WireManager.Instance != null && !WireManager.Instance.podeMover)
+        {
+            _rb.linearVelocity = Vector2.zero; // Para o Rigidbody
+            return; // Impede que o resto do código de andar execute
+        }
+
         _rb.linearVelocity = new Vector2(movimentoHorizontal, movimentoVertical).normalized * _Speed_Player;
     }
 
