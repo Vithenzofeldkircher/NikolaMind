@@ -13,26 +13,30 @@ public class ElectricalBox : MonoBehaviour, IInteractable
     {
         if (jaUsada) return;
 
-        // Tenta encontrar o gerenciador no Player
-        WireManager playerWire = FindObjectOfType<WireManager>();
+        // Acessando via Singleton em vez de Find
+        WireManager playerWire = WireManager.Instance;
+
+        // Verificação de segurança caso o Player não exista na cena
+        if (playerWire == null) return;
 
         if (tipo == TipoCaixa.Origem && !playerWire.carregandoFio)
         {
-            playerWire.IniciarConexao(metrosIniciais);
+            playerWire.IniciarConexao(metrosIniciais, transform.position);
             jaUsada = true;
-            Debug.Log("Fio coletado! Leve até o destino.");
+            Debug.Log("Fio coletado!");
         }
         else if (tipo == TipoCaixa.Destino && playerWire.carregandoFio)
         {
+            // O cálculo de fioDisponivel agora será preciso com as quinas
             if (playerWire.fioDisponivel > 0)
             {
                 playerWire.FinalizarConexao();
                 jaUsada = true;
-                Debug.Log("Conexão elétrica estabelecida!");
+                Debug.Log("Conexão estabelecida!");
             }
             else
             {
-                Debug.Log("O fio acabou antes de chegar aqui!");
+                Debug.Log("Fio curto demais!");
             }
         }
     }
