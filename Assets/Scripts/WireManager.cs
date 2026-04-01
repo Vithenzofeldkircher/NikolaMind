@@ -34,6 +34,7 @@ public class WireManager : MonoBehaviour
         VerificarColisoes();
         CalcularDistanciaETravar();
         AtualizarUI();
+        VerificarRetorno();
     }
 
     public void IniciarConexao(float metros, Vector3 posicaoInicial)
@@ -75,7 +76,46 @@ public class WireManager : MonoBehaviour
         line.SetPositions(pontosDoFio.ToArray());
     }
 
-    void VerificarColisoes() { /* Raycast para detectar quinas */ }
+    void VerificarColisoes()
+    {
+        // Pegamos o último ponto "fixo" do fio (onde ele dobrou por último)
+        Vector3 ultimoPontoFixo = pontosDoFio[pontosDoFio.Count - 2];
+        Vector3 direcao = transform.position - ultimoPontoFixo;
+        float distancia = Vector3.Distance(transform.position, ultimoPontoFixo);
+
+        // Lançamos um raio laser invisível entre o player e o último ponto fixo
+        RaycastHit2D hit = Physics2D.Raycast(ultimoPontoFixo, direcao, distancia, layerColisao);
+
+        if (hit.collider != null)
+        {
+            // Se o raio bateu em algo, o fio "dobrou". 
+            // Adicionamos um novo ponto na lista, exatamente na quina do objeto.
+            // O offset (0.1f) evita que o fio fique "dentro" da parede.
+            Vector3 pontoQuina = (Vector3)hit.point + ((Vector3)hit.normal * 0.1f);
+
+            // Insere o ponto antes da posição atual do player
+            pontosDoFio.Insert(pontosDoFio.Count - 1, pontoQuina);
+        }
+    }
+
+    void VerificarRetorno()
+    {
+        // Se o fio tiver dobras (mais de 2 pontos)
+        if (pontosDoFio.Count > 2)
+        {
+            Vector3 pontoPenultimo = pontosDoFio[pontosDoFio.Count - 3];
+
+            // Lançamos um raio entre o player e o ponto ANTERIOR à última dobra
+            float distancia = Vector3.Distance(transform.position, pontoPenultimo);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, pontoPenultimo - transform.position, distancia, layerColisao);
+
+            // Se o caminho estiver livre, significa que o fio "desenrolou"
+            if (hit.collider == null)
+            {
+                pontosDoFio.RemoveAt(pontosDoFio.Count - 2);
+            }
+        }
+    }
 
     public void FinalizarConexao() { carregandoFio = false; }
 
