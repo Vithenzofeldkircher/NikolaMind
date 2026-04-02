@@ -129,12 +129,18 @@ public class WireManager : MonoBehaviour
     public void FinalizarConexao(Vector3 posicaoDestino)
     {
         carregandoFio = false;
-        missaoConcluida = true; // Marca como concluído
+        missaoConcluida = true;
+
         pontosDoFio[pontosDoFio.Count - 1] = posicaoDestino;
         DesenharFio();
 
         if (textoMetros != null)
             textoMetros.text = "CONECTADO!";
+
+        if (Mission_Pass.Instance != null)
+        {
+            Mission_Pass.Instance.AtivarVitoria();
+        }
     }
 
     // Lógica de Raycast para quinas (Mantenha como está)

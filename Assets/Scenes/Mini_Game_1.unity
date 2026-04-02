@@ -2174,7 +2174,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 953224555}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1546503011}
+        m_TargetAssemblyTypeName: MudarCena, Assembly-CSharp
+        m_MethodName: Simple_Scene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &953224555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3138,6 +3150,7 @@ GameObject:
   - component: {fileID: 1546503006}
   - component: {fileID: 1546503009}
   - component: {fileID: 1546503010}
+  - component: {fileID: 1546503011}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3276,6 +3289,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Camera_Controller
   _Target: {fileID: 5816691581751119529}
+--- !u!114 &1546503011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546503005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b3f02a16083c648a95464abe0532b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MudarCena
 --- !u!1 &1573861326
 GameObject:
   m_ObjectHideFlags: 0
