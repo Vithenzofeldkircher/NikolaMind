@@ -18,7 +18,10 @@ public class WireManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoMetros;
 
     public bool missaoConcluida = false;
-    private void Awake() => Instance = this;
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+    }
 
     void Start()
     {
