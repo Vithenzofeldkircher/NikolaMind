@@ -7,37 +7,38 @@ public class ElectricalBox : MonoBehaviour, IInteractable
     [Header("Configurações")]
     public TipoCaixa tipo;
     public float metrosIniciais = 10f;
-    private bool jaUsada = false;
+    public bool jaUsada = false;
 
     public void Active()
     {
-        if (jaUsada) return;
-
-        // Acessando via Singleton
         WireManager playerWire = WireManager.Instance;
-
         if (playerWire == null) return;
 
-        if (tipo == TipoCaixa.Origem && !playerWire.carregandoFio)
+        // Se a missão já foi concluída, ninguém mais interage com nenhuma caixa
+        if (playerWire.missaoConcluida)
         {
-            // Passa a quantidade de fio e a posição desta caixa para o LineRenderer começar daqui
-            playerWire.IniciarConexao(metrosIniciais, transform.position);
-            jaUsada = true;
-            Debug.Log("Fio conectado na origem!");
+            Debug.Log("O sistema já está energizado.");
+            return;
+        }
+
+        if (tipo == TipoCaixa.Origem)
+        {
+            if (!playerWire.carregandoFio)
+            {
+                playerWire.IniciarConexao(metrosIniciais, transform.position);
+                Debug.Log("Fio retirado.");
+            }
         }
         else if (tipo == TipoCaixa.Destino && playerWire.carregandoFio)
         {
-            // usa 'fioAtual' que é o cálculo real com as curvas/quinas
             if (playerWire.fioAtual > 0)
             {
-                playerWire.FinalizarConexao();
-                jaUsada = true;
-                Debug.Log("Conexão estabelecida com sucesso!");
+                playerWire.FinalizarConexao(transform.position);
+                jaUsada = true; // Trava esta caixa específica também
             }
             else
             {
-                
-                Debug.Log("O fio não alcança!");
+                Debug.Log("Fio curto demais!");
             }
         }
     }

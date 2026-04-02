@@ -27,17 +27,21 @@ public class Player_Move : MonoBehaviour
         movimentoHorizontal = Input.GetAxisRaw("Horizontal");
         movimentoVertical = Input.GetAxisRaw("Vertical");
     }
-        
+
     private void FixedUpdate()
     {
-        // Se o WireManager disser que NÃO pode mover, cancelamos a velocidade
-        if (WireManager.Instance != null && !WireManager.Instance.podeMover)
+        Vector2 direcaoDesejada = new Vector2(movimentoHorizontal, movimentoVertical).normalized;
+        Vector3 proximaPosicao = transform.position + (Vector3)direcaoDesejada * _Speed_Player * Time.fixedDeltaTime;
+
+        // Se o fio estiver esticado e o player tentar ir para longe, a velocidade é zerada
+        if (WireManager.Instance != null && !WireManager.Instance.PodeMoverPara(proximaPosicao))
         {
-            _rb.linearVelocity = Vector2.zero; // Para o Rigidbody
-            return; // Impede que o resto do código de andar execute
+            _rb.linearVelocity = Vector2.zero;
+        }
+        else
+        {
+            _rb.linearVelocity = direcaoDesejada * _Speed_Player;
         }
 
-        _rb.linearVelocity = new Vector2(movimentoHorizontal, movimentoVertical).normalized * _Speed_Player;
     }
-
 }

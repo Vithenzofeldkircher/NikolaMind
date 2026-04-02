@@ -10,7 +10,6 @@ public class WireManager : MonoBehaviour
     public float fioMaximo = 10f;
     public float fioAtual = 0f;
     public bool carregandoFio = false;
-    public bool podeMover = true; // O script de movimento vai ler isso
     public LayerMask layerColisao;
 
     [Header("Componentes")]
@@ -18,106 +17,152 @@ public class WireManager : MonoBehaviour
     private List<Vector3> pontosDoFio = new List<Vector3>();
     [SerializeField] private TextMeshProUGUI textoMetros;
 
+    public bool missaoConcluida = false;
     private void Awake() => Instance = this;
 
     void Start()
     {
         line = GetComponent<LineRenderer>();
+        // Configura o LineRenderer para usar cores do Inspector (Gradient)
         line.positionCount = 0;
+
+        if (textoMetros != null) textoMetros.text = "";
     }
 
     void Update()
     {
-        if (!carregandoFio) { podeMover = true; return; }
+        // Tecla G para largar o fio
+        if (carregandoFio && Input.GetKeyDown(KeyCode.G))
+        {
+            LargarFio();
+        }
 
-        AtualizarPontosFio();
+        // Se o fio estiver na cena (mesmo largado), precisamos desenhá-lo
+        if (pontosDoFio.Count > 0)
+        {
+            DesenharFio();
+        }
+
+        if (!carregandoFio) return;
+
+        // Só executa lógica de movimento/distância se estiver carregando
         VerificarColisoes();
-        CalcularDistanciaETravar();
-        AtualizarUI();
         VerificarRetorno();
+        CalcularDistancia();
+        AtualizarUI();
+    }
+
+    void DesenharFio()
+    {
+        if (carregandoFio)
+        {
+            // O último ponto segue o player
+            pontosDoFio[pontosDoFio.Count - 1] = transform.position;
+        }
+
+        line.positionCount = pontosDoFio.Count;
+        line.SetPositions(pontosDoFio.ToArray());
+    }
+
+    void CalcularDistancia()
+    {
+        float distanciaTotal = 0;
+        for (int i = 0; i < pontosDoFio.Count - 1; i++)
+        {
+            distanciaTotal += Vector3.Distance(pontosDoFio[i], pontosDoFio[i + 1]);
+        }
+        fioAtual = Mathf.Max(0, fioMaximo - distanciaTotal);
+    }
+
+    public bool PodeMoverPara(Vector3 novaPosicao)
+    {
+        if (!carregandoFio) return true;
+
+        float distanciaSimulada = 0;
+        for (int i = 0; i < pontosDoFio.Count - 2; i++)
+            distanciaSimulada += Vector3.Distance(pontosDoFio[i], pontosDoFio[i + 1]);
+
+        distanciaSimulada += Vector3.Distance(pontosDoFio[pontosDoFio.Count - 2], novaPosicao);
+
+        // Permite se: a nova distância for menor que o limite OU se estiver diminuindo (voltando)
+        return distanciaSimulada <= fioMaximo || distanciaSimulada < GetDistanciaTotalAtual();
+    }
+
+    float GetDistanciaTotalAtual()
+    {
+        float d = 0;
+        for (int i = 0; i < pontosDoFio.Count - 1; i++)
+            d += Vector3.Distance(pontosDoFio[i], pontosDoFio[i + 1]);
+        return d;
     }
 
     public void IniciarConexao(float metros, Vector3 posicaoInicial)
     {
         fioMaximo = metros;
         carregandoFio = true;
-        pontosDoFio.Clear();
-        pontosDoFio.Add(posicaoInicial); // Ponto da caixa
-        pontosDoFio.Add(transform.position); // Ponto do player
+
+        if (missaoConcluida) return; // Impede de iniciar se já acabou
+
+        fioMaximo = metros;
+        carregandoFio = true; 
+
+        if (pontosDoFio.Count < 2)
+        {
+            pontosDoFio.Clear();
+            pontosDoFio.Add(posicaoInicial);
+            pontosDoFio.Add(transform.position);
+        }
+        // Se já houver pontos, o Update cuidará de prender o último ponto ao player novamente
     }
 
-    void CalcularDistanciaETravar()
+    public void LargarFio()
     {
-        float distanciaTotal = 0;
-        // Soma a distância de todos os segmentos (curvas do fio)
-        for (int i = 0; i < pontosDoFio.Count - 1; i++)
-        {
-            distanciaTotal += Vector3.Distance(pontosDoFio[i], pontosDoFio[i + 1]);
-        }
-
-        fioAtual = fioMaximo - distanciaTotal;
-
-        // Se a distância total for maior ou igual ao limite, trava o player
-        if (distanciaTotal >= fioMaximo)
-        {
-            podeMover = false;
-            fioAtual = 0;
-        }
-        else
-        {
-            podeMover = true;
-        }
-    }
-
-    void AtualizarPontosFio()
-    {
+        carregandoFio = false;
+        // O último ponto fica parado onde o player o soltou
         pontosDoFio[pontosDoFio.Count - 1] = transform.position;
-        line.positionCount = pontosDoFio.Count;
-        line.SetPositions(pontosDoFio.ToArray());
+        Debug.Log("Fio largado no chão.");
     }
 
+    public void FinalizarConexao(Vector3 posicaoDestino)
+    {
+        carregandoFio = false;
+        missaoConcluida = true; // Marca como concluído
+        pontosDoFio[pontosDoFio.Count - 1] = posicaoDestino;
+        DesenharFio();
+
+        if (textoMetros != null)
+            textoMetros.text = "CONECTADO!";
+    }
+
+    // Lógica de Raycast para quinas (Mantenha como está)
     void VerificarColisoes()
     {
-        // Pegamos o último ponto "fixo" do fio (onde ele dobrou por último)
         Vector3 ultimoPontoFixo = pontosDoFio[pontosDoFio.Count - 2];
         Vector3 direcao = transform.position - ultimoPontoFixo;
         float distancia = Vector3.Distance(transform.position, ultimoPontoFixo);
-
-        // Lançamos um raio laser invisível entre o player e o último ponto fixo
         RaycastHit2D hit = Physics2D.Raycast(ultimoPontoFixo, direcao, distancia, layerColisao);
 
         if (hit.collider != null)
         {
-            // Se o raio bateu em algo, o fio "dobrou". 
-            // Adicionamos um novo ponto na lista, exatamente na quina do objeto.
-            // O offset (0.1f) evita que o fio fique "dentro" da parede.
             Vector3 pontoQuina = (Vector3)hit.point + ((Vector3)hit.normal * 0.1f);
-
-            // Insere o ponto antes da posição atual do player
             pontosDoFio.Insert(pontosDoFio.Count - 1, pontoQuina);
         }
     }
 
     void VerificarRetorno()
     {
-        // Se o fio tiver dobras (mais de 2 pontos)
         if (pontosDoFio.Count > 2)
         {
             Vector3 pontoPenultimo = pontosDoFio[pontosDoFio.Count - 3];
-
-            // Lançamos um raio entre o player e o ponto ANTERIOR à última dobra
             float distancia = Vector3.Distance(transform.position, pontoPenultimo);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, pontoPenultimo - transform.position, distancia, layerColisao);
 
-            // Se o caminho estiver livre, significa que o fio "desenrolou"
             if (hit.collider == null)
             {
                 pontosDoFio.RemoveAt(pontosDoFio.Count - 2);
             }
         }
     }
-
-    public void FinalizarConexao() { carregandoFio = false; }
 
     private void AtualizarUI()
     {
