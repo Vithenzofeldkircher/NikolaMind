@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class MudarCena : MonoBehaviour
 {
-    public string nomeDaCena;
 
     public void IrParaCena()
     {
