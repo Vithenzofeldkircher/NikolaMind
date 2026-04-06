@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0415743d14f625a44bc6fe38cb46b958, type: 3}
+  m_Name: NPC
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  falas:
+  - nomePersonagem: ???
+    texto: oioi...
+    IdPersonagem: 0
+  - nomePersonagem: ???
+    texto: oioi...PSIUUuu aqui...
+    IdPersonagem: 0
+  - nomePersonagem: ???
+    texto: "oii.. nao sou importante s\xF3 quero avisa lo, que as maquinas quebraram
+      e preciso de ajuda antes que tomas me demita..."
+    IdPersonagem: 0
+  - nomePersonagem: ???
+    texto: POR FAVOR...Me ajuda, em troca...eu...
+    IdPersonagem: 0
+  - nomePersonagem: ???
+    texto: "eu... eu ajudo voc\xEA o deixando mais popular! "
+    IdPersonagem: 0
+  - nomePersonagem: ???
+    texto: "Bom... Preciso que passe o cabo da caixa de energia para o outro lado
+      do galp\xE3o! RAPIDO! "
+    IdPersonagem: 0
+  - nomePersonagem: ???
+    texto: "E cuidado com os fios soltos eles est\xE3o dando choques"
+    IdPersonagem: 0
+  ehFimDeQuest: 0
+  dificuldade: 2
