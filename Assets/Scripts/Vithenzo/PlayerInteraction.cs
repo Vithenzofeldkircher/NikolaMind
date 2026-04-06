@@ -1,20 +1,14 @@
 using UnityEngine;
+using System; // Necessário para o Action
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Configurações")]
     [SerializeField] private string botaoInteracao = "Interact";
-
-    [Header("UI de Feedback")]
-    [SerializeField] private GameObject iconeInteracao; // Arraste o Canvas do "E" para cá
-
     private IInteractable _currentSelection;
 
-    void Start()
-    {
-        // Garante que o ícone comece desligado
-        if (iconeInteracao != null) iconeInteracao.SetActive(false);
-    }
+    // Eventos para avisar outros scripts (como o MostrarE)
+    public static event Action OnTargetEnter;
+    public static event Action OnTargetExit;
 
     void Update()
     {
@@ -29,11 +23,7 @@ public class PlayerInteraction : MonoBehaviour
         if (collision.TryGetComponent(out IInteractable target))
         {
             _currentSelection = target;
-
-            // ATIVA o ícone "E" na tela
-            if (iconeInteracao != null) iconeInteracao.SetActive(true);
-
-            Debug.Log("Pode interagir com: " + collision.name);
+            OnTargetEnter?.Invoke(); // Avisa que alguém entrou
         }
     }
 
@@ -44,11 +34,7 @@ public class PlayerInteraction : MonoBehaviour
             if (target == _currentSelection)
             {
                 _currentSelection = null;
-
-                // DESATIVA o ícone "E" na tela
-                if (iconeInteracao != null) iconeInteracao.SetActive(false);
-
-                Debug.Log("Saiu do alcance.");
+                OnTargetExit?.Invoke(); // Avisa que alguém saiu
             }
         }
     }

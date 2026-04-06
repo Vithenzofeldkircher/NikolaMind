@@ -28,7 +28,6 @@ public class Mission_Pass : MonoBehaviour
             painelVitoria.SetActive(true);
             Debug.Log("Vitória! Painel ativado.");
 
-             Time.timeScale = 0f; 
         }
     }
 }

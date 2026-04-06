@@ -118,21 +118,23 @@ public class Dialogue_System : MonoBehaviour
 
     public void ResponderSucesso()
     {
-        float pontos = 0;
-        switch (currentData.dificuldade)
+        // Chama o ScoreManager global passando a dificuldade dos dados atuais
+        if (Points_Maneger.Instance != null)
         {
-            case DialogueData.Dificuldade.Facil: pontos = 5f; break;
-            case DialogueData.Dificuldade.Media: pontos = 15f; break;
-            case DialogueData.Dificuldade.Dificil: pontos = 30f; break;
+            Points_Maneger.Instance.AdicionarPontos(currentData.dificuldade);
         }
 
-        acceptanceManager.UpdateAcceptance(pontos);
         LimparEFinalizar();
     }
 
     public void ResponderFalha()
     {
-        acceptanceManager.UpdateAcceptance(-22f);
+        // Chama o ScoreManager global para aplicar a penalidade
+        if (Points_Maneger.Instance != null)
+        {
+            Points_Maneger.Instance.RemoverPontos();
+        }
+
         LimparEFinalizar();
     }
 

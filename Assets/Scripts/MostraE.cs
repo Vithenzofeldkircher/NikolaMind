@@ -4,25 +4,28 @@ public class MostrarE : MonoBehaviour
 {
     public GameObject textoE;
 
-    private void Start()
+    private void OnEnable()
     {
-        if (textoE != null)
-            textoE.SetActive(false);
+        // Se inscreve nos avisos do PlayerInteraction
+        PlayerInteraction.OnTargetEnter += Show;
+        PlayerInteraction.OnTargetExit += Hide;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnDisable()
     {
-        if (other.CompareTag("Player"))
-        {
-            textoE.SetActive(true);
-        }
+        // Se desinscreve para evitar erros de memória e de "Missing Reference"
+        PlayerInteraction.OnTargetEnter -= Show;
+        PlayerInteraction.OnTargetExit -= Hide;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void Show()
     {
-        if (other.CompareTag("Player"))
-        {
-            textoE.SetActive(false);
-        }
+        if (textoE != null) textoE.SetActive(true);
+    }
+
+    private void Hide()
+    {
+        // O "if != null" aqui mata o erro de "Object Destroyed" na troca de cena!
+        if (textoE != null) textoE.SetActive(false);
     }
 }
