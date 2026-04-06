@@ -2,16 +2,25 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Arraste o prefabs da bala aqui
-    public Transform firePoint;     // Onde o tiro sai (cano da arma)
-    public Transform player;        // Arraste o player aqui
-    public float fireRate = 1.5f;   // Tempo entre os tiros
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public Transform player;
+    public float fireRate = 1.5f;
+
+    [Header("Configurações de Alcance")]
+    public float range = 10f; // Distância máxima para atirar
+
     private float nextFireTime;
 
     void Update()
     {
-        // Verifica se o player existe e se já deu o tempo de atirar
-        if (player != null && Time.time >= nextFireTime)
+        if (player == null) return;
+
+        // 1. Calcula a distância entre a torreta e o player
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        // 2. Só atira se estiver dentro do range E no tempo certo
+        if (distanceToPlayer <= range && Time.time >= nextFireTime)
         {
             Shoot();
             nextFireTime = Time.time + fireRate;
@@ -20,13 +29,15 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        // Cria a bala na posição do firePoint
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-
-        // Calcula a direção fixa para o player
         Vector2 direction = (player.position - firePoint.position).normalized;
-
-        // Passa a direção para o script da bala
         bullet.GetComponent<Bullet>().Setup(direction);
+    }
+
+    // 3. Desenha um círculo no editor para você ver o alcance visualmente
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
