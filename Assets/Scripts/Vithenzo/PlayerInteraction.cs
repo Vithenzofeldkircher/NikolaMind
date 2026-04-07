@@ -1,14 +1,10 @@
 using UnityEngine;
-using System; // Necessário para o Action
 
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private string botaoInteracao = "Interact";
     private IInteractable _currentSelection;
-
-    // Eventos para avisar outros scripts (como o MostrarE)
-    public static event Action OnTargetEnter;
-    public static event Action OnTargetExit;
+    private MostrarE _currentVisualFeedback; // Guarda o script de feedback do objeto atual
 
     void Update()
     {
@@ -20,10 +16,17 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 1. Verifica se o objeto é interagível
         if (collision.TryGetComponent(out IInteractable target))
         {
             _currentSelection = target;
-            OnTargetEnter?.Invoke(); // Avisa que alguém entrou
+
+            // 2. Procura o script "MostrarE" APENAS neste objeto
+            if (collision.TryGetComponent(out MostrarE visual))
+            {
+                _currentVisualFeedback = visual;
+                _currentVisualFeedback.Show(); // Ativa apenas o "E" deste objeto
+            }
         }
     }
 
@@ -33,8 +36,14 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (target == _currentSelection)
             {
+                // Desativa o feedback visual antes de limpar a seleção
+                if (_currentVisualFeedback != null)
+                {
+                    _currentVisualFeedback.Hide();
+                    _currentVisualFeedback = null;
+                }
+
                 _currentSelection = null;
-                OnTargetExit?.Invoke(); // Avisa que alguém saiu
             }
         }
     }

@@ -4,28 +4,20 @@ public class MostrarE : MonoBehaviour
 {
     public GameObject textoE;
 
-    private void OnEnable()
+    // Começa escondido
+    void Start()
     {
-        // Se inscreve nos avisos do PlayerInteraction
-        PlayerInteraction.OnTargetEnter += Show;
-        PlayerInteraction.OnTargetExit += Hide;
+        if (textoE != null) textoE.SetActive(false);
     }
 
-    private void OnDisable()
-    {
-        // Se desinscreve para evitar erros de memória e de "Missing Reference"
-        PlayerInteraction.OnTargetEnter -= Show;
-        PlayerInteraction.OnTargetExit -= Hide;
-    }
-
-    private void Show()
+    // Agora são funções simples que o Player vai chamar
+    public void Show()
     {
         if (textoE != null) textoE.SetActive(true);
     }
 
-    private void Hide()
+    public void Hide()
     {
-        // O "if != null" aqui mata o erro de "Object Destroyed" na troca de cena!
         if (textoE != null) textoE.SetActive(false);
     }
 }

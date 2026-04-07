@@ -1,28 +1,38 @@
 using UnityEngine;
 
-public class Alavanca : MonoBehaviour, IInteractable
+public class Alavanca : MonoBehaviour
 {
     [Header("Arraste a Porta da Hierarchy para cá")]
     [SerializeField] private GameObject portaObjeto;
 
     private bool _portaEstaAtiva = true;
 
-    // Este é o método que o seu PlayerInteraction chama
+    // Este método o Unity chama sozinho quando você clica no objeto (se ele tiver Collider)
+    private void OnMouseDown()
+    {
+        TogglePorta();
+    }
+
+    // Mantemos o Active caso você queira usar o "E" no futuro também
     public void Active()
+    {
+        TogglePorta();
+    }
+
+    private void TogglePorta()
     {
         if (portaObjeto != null)
         {
-            // Inverte o estado atual (se era true, vira false / se era false, vira true)
             _portaEstaAtiva = !_portaEstaAtiva;
 
-            // Faz a porta sumir ou aparecer
+            // Desliga/Liga o objeto da porta
             portaObjeto.SetActive(_portaEstaAtiva);
 
-            Debug.Log(_portaEstaAtiva ? "Porta Apareceu!" : "Porta Sumiu!");
+            Debug.Log("Clique detectado! Porta ativa: " + _portaEstaAtiva);
         }
         else
         {
-            Debug.LogWarning("Esqueceu de arrastar a porta para o campo Porta Objeto no Inspector!");
+            Debug.LogError("Erro: Arraste a porta para o campo 'Porta Objeto' no Inspector!");
         }
     }
 }
