@@ -2,28 +2,32 @@ using UnityEngine;
 
 public class Porta : MonoBehaviour
 {
-    [SerializeField] private Vector3 deslocamentoAberta = new Vector3(0, 2, 0); // Onde ela vai parar
-    [SerializeField] private float velocidade = 2f;
+    [Header("Configurações de Movimento")]
+    [SerializeField] private Vector3 deslocamentoAoAbrir = new Vector3(0, 3f, 0);
+    [SerializeField] private float velocidade = 3f;
 
-    private Vector3 _posicaoInicial;
-    private Vector3 _posicaoDestino;
+    private Vector3 _posicaoFechada;
+    private Vector3 _posicaoAberta;
     private bool _deveAbrir = false;
 
     void Start()
     {
-        _posicaoInicial = transform.position;
-        _posicaoDestino = _posicaoInicial + deslocamentoAberta;
+        _posicaoFechada = transform.position;
+        _posicaoAberta = _posicaoFechada + deslocamentoAoAbrir;
     }
 
     void Update()
     {
-        // Move suavemente em direção ao objetivo
-        Vector3 alvo = _deveAbrir ? _posicaoDestino : _posicaoInicial;
-        transform.position = Vector3.Lerp(transform.position, alvo, Time.deltaTime * velocidade);
+        // Define para onde a porta deve ir no momento
+        Vector3 destino = _deveAbrir ? _posicaoAberta : _posicaoFechada;
+
+        // Move suavemente a porta frame a frame
+        transform.position = Vector3.Lerp(transform.position, destino, Time.deltaTime * velocidade);
     }
 
-    public void SetAberta(bool estado)
+    // Método chamado pela alavanca
+    public void SetAberta(bool status)
     {
-        _deveAbrir = estado;
+        _deveAbrir = status;
     }
 }

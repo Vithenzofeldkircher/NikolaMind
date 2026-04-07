@@ -1,28 +1,28 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Alavanca : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Porta portaAlvo; // Arraste a porta para cá no Inspector
-    private bool _estaAtiva = false;
+    [Header("Arraste a Porta da Hierarchy para cá")]
+    [SerializeField] private GameObject portaObjeto;
 
-    // Se você quiser usar o Clique do Mouse diretamente:
-    private void OnMouseDown()
-    {
-        Active();
-    }
+    private bool _portaEstaAtiva = true;
 
+    // Este é o método que o seu PlayerInteraction chama
     public void Active()
     {
-        _estaAtiva = !_estaAtiva; // Inverte o estado (liga/desliga)
-
-        if (portaAlvo != null)
+        if (portaObjeto != null)
         {
-            portaAlvo.SetAberta(_estaAtiva);
-        }
+            // Inverte o estado atual (se era true, vira false / se era false, vira true)
+            _portaEstaAtiva = !_portaEstaAtiva;
 
-        // Feedback visual da alavanca (opcional)
-        transform.localScale = new Vector3(transform.localScale.x, _estaAtiva ? -1 : 1, 1);
-        Debug.Log("Alavanca " + (_estaAtiva ? "Ativada" : "Desativada"));
+            // Faz a porta sumir ou aparecer
+            portaObjeto.SetActive(_portaEstaAtiva);
+
+            Debug.Log(_portaEstaAtiva ? "Porta Apareceu!" : "Porta Sumiu!");
+        }
+        else
+        {
+            Debug.LogWarning("Esqueceu de arrastar a porta para o campo Porta Objeto no Inspector!");
+        }
     }
 }
