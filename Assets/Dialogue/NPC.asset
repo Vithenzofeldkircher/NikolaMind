@@ -36,5 +36,5 @@ MonoBehaviour:
   - nomePersonagem: ???
     texto: "E cuidado com os fios soltos eles est\xE3o dando choques"
     IdPersonagem: 0
-  ehFimDeQuest: 0
+  ehFimDeQuest: 1
   dificuldade: 2
