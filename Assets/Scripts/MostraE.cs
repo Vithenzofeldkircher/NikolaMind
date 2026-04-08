@@ -2,22 +2,22 @@ using UnityEngine;
 
 public class MostrarE : MonoBehaviour
 {
-    public GameObject textoE;
+    // Arraste aqui apenas o objeto do Texto, NÃO o Canvas inteiro!
+    public GameObject visualE;
 
-    // Começa escondido
     void Start()
     {
-        if (textoE != null) textoE.SetActive(false);
+        // Desativa apenas o visual, o objeto pai continua vivo
+        if (visualE != null) visualE.SetActive(false);
     }
 
-    // Agora são funções simples que o Player vai chamar
     public void Show()
     {
-        if (textoE != null) textoE.SetActive(true);
+        if (visualE != null) visualE.SetActive(true);
     }
 
     public void Hide()
     {
-        if (textoE != null) textoE.SetActive(false);
+        if (visualE != null) visualE.SetActive(false);
     }
 }
