@@ -558,6 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d374c7697405141b6f88daf483c84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemColetavel
+  cooldownInteracao: 0.2
 --- !u!50 &1120785583
 Rigidbody2D:
   serializedVersion: 5
@@ -980,6 +981,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2078308537974415716, guid: 5a258a3dceeb1ee46a939860716efcef, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2078308537974415716, guid: 5a258a3dceeb1ee46a939860716efcef, type: 3}
       propertyPath: m_Name
       value: Player
