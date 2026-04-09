@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElectricalBox
   tipo: 1
-  metrosIniciais: 35
+  metrosIniciais: 65
   jaUsada: 0
 --- !u!61 &78868994
 BoxCollider2D:
@@ -6239,7 +6239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1206321817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7697,7 +7697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef70ac63a7b3e24a954d960536e5667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Camera_Controller
-  _Target: {fileID: 2105221599}
+  _Target: {fileID: 5816691581751119529}
 --- !u!114 &1546503011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8593,7 +8593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1037578845878401229, guid: 2cfb899a16cfdc0498bb61ebbe444cca, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2864811083176108850, guid: 2cfb899a16cfdc0498bb61ebbe444cca, type: 3}
       propertyPath: m_Radius
@@ -10508,6 +10508,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 916bf5f16bec05c47b22eed309bd85a1, type: 3}
+--- !u!4 &5816691581751119529 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 75807262891753664, guid: 5a258a3dceeb1ee46a939860716efcef, type: 3}
+  m_PrefabInstance: {fileID: 8074188092125552876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8074188092125552876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10578,7 +10583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2078308537974415716, guid: 5a258a3dceeb1ee46a939860716efcef, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3936847161749228112, guid: 5a258a3dceeb1ee46a939860716efcef, type: 3}
       propertyPath: m_Enabled
