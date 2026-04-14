@@ -8,9 +8,6 @@ public class Mission_Pass : MonoBehaviour
     [Header("Configuração de UI")]
     [SerializeField] private GameObject painelVitoria;
 
-    [Header("Cursos")]
-    [SerializeField] private GameObject cursorLockObject;
-
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -32,17 +29,6 @@ public class Mission_Pass : MonoBehaviour
             Debug.Log("Vitória! Painel ativado.");
         }
 
-        if (cursorLockObject != null)
-        {
-            cursorLockObject.SetActive(false);
-        }
-
-        // FORÇA o cursor a voltar
-        Cursor_Tutorial.podeTravar = false;
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        Debug.Log(Cursor.lockState);
+        CursorManager.Instance.UnlockCursor();
     }
 }
