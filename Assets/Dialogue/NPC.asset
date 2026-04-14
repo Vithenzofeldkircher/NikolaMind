@@ -36,5 +36,10 @@ MonoBehaviour:
   - nomePersonagem: ???
     texto: "E cuidado com os fios soltos eles est\xE3o dando choques"
     IdPersonagem: 0
+  - nomePersonagem: ???
+    texto: "Ah e cuidado com fio que voce vai levar da primeira caixa de energia
+      at\xE9 a outra caixa que es\xB4ta do outro lado do galp\xE3o, ele n\xE3o pode
+      ficar enroscado em nenhum obstaculo no caminho."
+    IdPersonagem: 0
   ehFimDeQuest: 1
   dificuldade: 2
