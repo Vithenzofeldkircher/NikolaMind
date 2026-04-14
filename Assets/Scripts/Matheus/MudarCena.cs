@@ -13,4 +13,10 @@ public class MudarCena : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+    public void Title()
+    {
+        SceneManager.LoadScene("Tela Inicial");
+    }
+
 }
