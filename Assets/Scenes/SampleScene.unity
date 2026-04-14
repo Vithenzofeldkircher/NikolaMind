@@ -730,6 +730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Points_Maneger
   pontosAtuais: 50
+  penalidadeMorte: 20
   pontosFacil: 5
   pontosMedia: 15
   pontosDificil: 30
@@ -3547,6 +3548,14 @@ PrefabInstance:
     - target: {fileID: 5205064533295684656, guid: 2cfb899a16cfdc0498bb61ebbe444cca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196147169352317868, guid: 2cfb899a16cfdc0498bb61ebbe444cca, type: 3}
+      propertyPath: m_Size.y
+      value: 2.0232947
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196147169352317868, guid: 2cfb899a16cfdc0498bb61ebbe444cca, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.2343181
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
