@@ -18,6 +18,7 @@ public class NPC_Interactable : MonoBehaviour, IInteractable
         {
             sistemaDialogo.IniciarDialogo(meuDialogo);
         }
+        CursorManager.Instance.UnlockCursor();
     }
 
     // Detecta quando o Player sai do Trigger do NPC

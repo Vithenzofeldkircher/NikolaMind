@@ -7,11 +7,14 @@ public class Points_Maneger : MonoBehaviour
     [Header("Configurações de Pontos")]
     public float pontosAtuais = 50f;
 
+    [Header("Penalidades")]
+    public float penalidadeMorte = 20f;
+
     // Valores de recompensa baseados na dificuldade
     public float pontosFacil = 5f;
     public float pontosMedia = 15f;
     public float pontosDificil = 30f;
-    public float penalidadeFalha = -22f;
+    public float penalidadeFalha = 22f;
 
     private void Awake()
     {
@@ -43,8 +46,16 @@ public class Points_Maneger : MonoBehaviour
 
     public void RemoverPontos()
     {
-        pontosAtuais += penalidadeFalha;
+        pontosAtuais -= penalidadeFalha;
         AtualizarInterface();
+    }
+
+    public void PlayerMorreu()
+    {
+        pontosAtuais -= penalidadeMorte;
+        AtualizarInterface();
+
+        Debug.Log("Player morreu! Penalidade aplicada.");
     }
 
     private void AtualizarInterface()

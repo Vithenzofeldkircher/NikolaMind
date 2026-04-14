@@ -13,6 +13,7 @@ public class Life : MonoBehaviour
     public Sprite fullHeart;    // Sprite do coração cheio
     public Sprite emptyHeart;   // Sprite do coração vazio/ tirar a imagem do coração 
 
+
     void Start()
     {
         currentHearts = maxHearts;
@@ -54,6 +55,13 @@ public class Life : MonoBehaviour
     private void Die()
     {
         Debug.Log("Você morreu!");
+
+        // Aplica penalidade de morte
+        if (Points_Maneger.Instance != null)
+        {
+            Points_Maneger.Instance.PlayerMorreu();
+        }
+
         SceneManager.LoadScene("SampleScene");
     }
 }
