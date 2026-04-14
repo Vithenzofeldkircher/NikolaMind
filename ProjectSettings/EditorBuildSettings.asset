@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Mini_Game_3.unity
     guid: e47a854a6d7cbe94eb8d9ee09abbdfdd
   - enabled: 1
+    path: Assets/Scenes/FinalBom.unity
+    guid: e94b0519f1a020d4788362c71d7a9445
+  - enabled: 1
+    path: Assets/Scenes/FinalRuim.unity
+    guid: 09950fd64f36e8942bfcb99b8316f1c7
+  - enabled: 1
     path: Assets/Scenes/Teste.unity
     guid: 2f9633f85f287da478f9ef9644dd183d
   m_configObjects:

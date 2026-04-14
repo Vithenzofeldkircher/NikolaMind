@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class Cursor_Tutorial : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public static bool podeTravar = true;
 
-    // Update is called once per frame
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Update()
     {
-        
+        if (podeTravar)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
+
 }
