@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Portuguese (Brazil) (pt-BR)
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Locale
   m_Identifier:
-    m_Code: pt-BR
+    m_Code: Portugues
   m_Metadata:
     m_Items: []
   m_LocaleName: Portuguese (Brazil) (pt-BR)
