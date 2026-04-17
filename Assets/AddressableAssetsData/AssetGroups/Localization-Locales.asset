@@ -21,6 +21,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9018ccc469406c846833dc97142e0798
+    m_Address: English (en) 1
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6bcf1c93c41ac540bda77effa30d4fa
+    m_Address: Portuguese (Brazil) (pt-BR) 1
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ea5fd68cb8b56e644b71c68a6a2180fe
     m_Address: English (en)
     m_ReadOnly: 1

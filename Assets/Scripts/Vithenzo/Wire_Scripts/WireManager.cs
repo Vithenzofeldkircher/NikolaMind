@@ -1,8 +1,4 @@
-using Unity.Android.Gradle.Manifest;
-using Unity.VisualScripting;
 using UnityEngine;
-using static Unity.Burst.Intrinsics.X86;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class WireManager : MonoBehaviour
 {

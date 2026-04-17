@@ -11,6 +11,13 @@ public class ElectricalBox : MonoBehaviour, IInteractable
 
     public void Active() // Este método é chamado pelo seu sistema de Interação
     {
+
+        if (Pickup_Manager.Instance != null && Pickup_Manager.Instance.estaCarregandoItem)
+        {
+            Debug.Log("Mãos ocupadas com um item!");
+            return;
+        }
+
         WireManager playerWire = WireManager.Instance;
         if (playerWire == null) return;
 

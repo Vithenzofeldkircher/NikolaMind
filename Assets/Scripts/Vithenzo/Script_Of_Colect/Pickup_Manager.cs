@@ -2,51 +2,69 @@ using UnityEngine;
 
 public class Pickup_Manager : MonoBehaviour
 {
+
+
     public static Pickup_Manager Instance;
 
-    public bool Esta_Carregando_Item = true;
 
-    public Transform Ponto_De_Segurar;
+    public bool estaCarregandoItem => itemAtual != null;
+
+
+    public Transform pontoDeSegurar;
+
 
     private GameObject itemAtual;
 
     private void Awake() => Instance = this;
-   
+
+
 
     void Update()
     {
-
-        // If que serve para ele largar o item com o G também
-        if (Esta_Carregando_Item && Input.GetButtonDown("G"))
+        // Largar item com G
+        if (estaCarregandoItem && Input.GetButtonDown("Largar"))
         {
-            Largar_Item();
+            LargarItem();
         }
     }
 
-    public void Segurar_Item()
-    {
-        // faz o item seguir o player
-        itemAtual.transform.SetParent(Ponto_De_Segurar);
 
+
+    public void SegurarItem(GameObject item)
+    {
+        itemAtual = item;
+        itemAtual.transform.SetParent(pontoDeSegurar);
         itemAtual.transform.localPosition = Vector3.zero;
 
-        // Desativa o colisor para não dar erro de física enquanto carrega
-        if (itemAtual.TryGetComponent(out Collider2D col)) col.enabled = false;
+        // Em vez de collider.enabled = false, apenas garantimos a Layer
+        itemAtual.layer = LayerMask.NameToLayer("Item");
 
-        if(itemAtual.TryGetComponent(out MostrarE visual)) visual.Hide();
+        // Se o item tiver um Rigidbody2D, precisamos deixá-lo cinemático
+        // para ele não cair da mão por causa da gravidade
+        if (itemAtual.TryGetComponent(out Rigidbody2D rb))
+        {
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.linearVelocity = Vector2.zero; // Para ele parar de se mexer
+        }
+
+        if (itemAtual.TryGetComponent(out MostrarE visual)) visual.Hide();
     }
 
 
-    public void Largar_Item()
+
+    public void LargarItem()
     {
-        if(itemAtual == null) return;
+        if (itemAtual == null) return;
 
         itemAtual.transform.SetParent(null);
 
-        if(itemAtual.TryGetComponent(out Collider2D col)) col.enabled = true;
+        if (itemAtual.TryGetComponent(out Rigidbody2D rb))
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic; // Volta a cair com a gravidade
+        }
 
         itemAtual = null;
-        print("Item largado");
     }
+
 
 }
