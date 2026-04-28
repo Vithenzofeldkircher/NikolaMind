@@ -60,8 +60,14 @@ public class Pickup_Manager : MonoBehaviour
 
         if (itemAtual.TryGetComponent(out Rigidbody2D rb))
         {
-            rb.bodyType = RigidbodyType2D.Dynamic; // Volta a cair com a gravidade
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.simulated = true; // Garante que a física volte a rodar
+                                 // Opcional: rb.linearVelocity = Vector2.zero;
         }
+
+        // Retorna a Layer original para ele voltar a colidir com o cenário
+        // Supondo que sua layer de colisão seja "Default" ou "Mundo"
+        itemAtual.layer = LayerMask.NameToLayer("Default");
 
         itemAtual = null;
     }
