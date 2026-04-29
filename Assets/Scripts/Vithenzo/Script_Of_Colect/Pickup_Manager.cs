@@ -36,21 +36,18 @@ public class Pickup_Manager : MonoBehaviour
         itemAtual.transform.SetParent(pontoDeSegurar);
         itemAtual.transform.localPosition = Vector3.zero;
 
-        // Em vez de collider.enabled = false, apenas garantimos a Layer
-        itemAtual.layer = LayerMask.NameToLayer("Item");
+        // MUDA PARA A LAYER QUE NÃO COLIDE COM O PLAYER
+        itemAtual.layer = LayerMask.NameToLayer("ItemNaMao");
 
-        // Se o item tiver um Rigidbody2D, precisamos deixá-lo cinemático
-        // para ele não cair da mão por causa da gravidade
         if (itemAtual.TryGetComponent(out Rigidbody2D rb))
         {
             rb.bodyType = RigidbodyType2D.Kinematic;
-            rb.linearVelocity = Vector2.zero; // Para ele parar de se mexer
+            rb.simulated = true;
+            rb.linearVelocity = Vector2.zero;
         }
 
         if (itemAtual.TryGetComponent(out MostrarE visual)) visual.Hide();
     }
-
-
 
     public void LargarItem()
     {
@@ -58,19 +55,15 @@ public class Pickup_Manager : MonoBehaviour
 
         itemAtual.transform.SetParent(null);
 
+        // VOLTA PARA A LAYER QUE COLIDE COM O PLAYER NOVAMENTE
+        itemAtual.layer = LayerMask.NameToLayer("ItemNoChao");
+
         if (itemAtual.TryGetComponent(out Rigidbody2D rb))
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.simulated = true; // Garante que a física volte a rodar
-                                 // Opcional: rb.linearVelocity = Vector2.zero;
+            rb.simulated = true;
         }
-
-        // Retorna a Layer original para ele voltar a colidir com o cenário
-        // Supondo que sua layer de colisão seja "Default" ou "Mundo"
-        itemAtual.layer = LayerMask.NameToLayer("Default");
 
         itemAtual = null;
     }
-
-
 }
