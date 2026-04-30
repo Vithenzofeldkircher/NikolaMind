@@ -39,6 +39,11 @@ public class Pickup_Manager : MonoBehaviour
         // MUDA PARA A LAYER QUE NÃO COLIDE COM O PLAYER
         itemAtual.layer = LayerMask.NameToLayer("ItemNaMao");
 
+        if (TryGetComponent(out HandFollow seguidor))
+        {
+            seguidor.ResetarDirecaoAoPegar();
+        }
+
         if (itemAtual.TryGetComponent(out Rigidbody2D rb))
         {
             rb.bodyType = RigidbodyType2D.Kinematic;
