@@ -2,15 +2,35 @@ using UnityEngine;
 
 public class Wire_Extender : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Configurações")]
+    [SerializeField] private float bonusMetros = 5f;
+    private bool jaAtivado = false;
+
+    // Referência ao script de coleta original (opcional, para desativar a coleta manual)
+    private ItemColetavel itemColetavel;
+
+    void Awake()
     {
-        
+        itemColetavel = GetComponent<ItemColetavel>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AtivarExtensao()
     {
-        
+        if (jaAtivado) return;
+
+        jaAtivado = true;
+
+        // Aumenta o fio no Manager
+        if (WireManager.Instance != null)
+        {
+            WireManager.Instance.fioMaximo += bonusMetros;
+            Debug.Log($"Fio aumentado em {bonusMetros}m!");
+        }
+
+        // Bloqueia a interação de pegar o item (ItemColetavel)
+        if (itemColetavel != null)
+        {
+            itemColetavel.enabled = false;
+        }
     }
 }
