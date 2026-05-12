@@ -34,21 +34,21 @@ public class WireRenderer : MonoBehaviour
 
     void VerificarColisoes()
     {
-        // O ponto de onde o raio sai (penúltimo ponto da lista)
         Vector3 ultimoPontoFixo = pontosDoFio[pontosDoFio.Count - 2];
         Vector3 direcao = transform.position - ultimoPontoFixo;
         float distancia = Vector3.Distance(transform.position, ultimoPontoFixo);
 
-        // Dispara um raio para ver se há algo entre o último ponto fixo e o player
         RaycastHit2D hit = Physics2D.Raycast(ultimoPontoFixo, direcao, distancia, layerColisao);
 
         if (hit.collider != null)
         {
-            // Se bateu em algo, adicionamos um ponto na quina
-            // Usamos a 'normal' do impacto para afastar o fio levemente da parede
-            Vector3 pontoQuina = (Vector3)hit.point + ((Vector3)hit.normal * distanciaDaQuina);
+            // --- NOVA LÓGICA AQUI ---// Verifica se o que o fio tocou é um extensor
+            if (hit.collider.TryGetComponent(out Wire_Extender extensor))
+            {
+                extensor.AtivarExtensao();
+            }
 
-            // Insere o novo ponto antes da posição atual do player
+            Vector3 pontoQuina = (Vector3)hit.point + ((Vector3)hit.normal * distanciaDaQuina);
             pontosDoFio.Insert(pontosDoFio.Count - 1, pontoQuina);
         }
     }
