@@ -61,7 +61,7 @@ public class Pickup_Manager : MonoBehaviour
         itemAtual.transform.SetParent(null);
 
         // VOLTA PARA A LAYER QUE COLIDE COM O PLAYER NOVAMENTE
-        itemAtual.layer = LayerMask.NameToLayer("ItemNoChao");
+        itemAtual.layer = LayerMask.NameToLayer("obstaculo");
 
         if (itemAtual.TryGetComponent(out Rigidbody2D rb))
         {

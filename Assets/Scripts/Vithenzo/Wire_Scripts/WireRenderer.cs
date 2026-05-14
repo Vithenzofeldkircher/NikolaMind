@@ -42,7 +42,7 @@ public class WireRenderer : MonoBehaviour
 
         if (hit.collider != null)
         {
-            // --- NOVA LÓGICA AQUI ---// Verifica se o que o fio tocou é um extensor
+            // Verifica se o que o fio tocou é um extensor
             if (hit.collider.TryGetComponent(out Wire_Extender extensor))
             {
                 extensor.AtivarExtensao();
