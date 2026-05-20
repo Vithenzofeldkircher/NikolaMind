@@ -1200,7 +1200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c90504190aa73240b5d2a294f383c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wire_Extender
-  bonusMetros: 15
+  bonusMetros: 5
 --- !u!58 &266328720
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -21534,7 +21534,7 @@ MonoBehaviour:
     m_Bits: 512
   pontosDoFio:
   - {x: 0, y: 0, z: 0}
-  distanciaDaQuina: 0.3
+  distanciaDaQuina: 0.1
 --- !u!114 &9039094945312763102
 MonoBehaviour:
   m_ObjectHideFlags: 0

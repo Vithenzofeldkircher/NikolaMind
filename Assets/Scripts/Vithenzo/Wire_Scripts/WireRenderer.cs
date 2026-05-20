@@ -38,6 +38,9 @@ public class WireRenderer : MonoBehaviour
         Vector3 direcao = transform.position - ultimoPontoFixo;
         float distancia = Vector3.Distance(transform.position, ultimoPontoFixo);
 
+        //muda o fio um pouco pro lado
+        Vector3 origemRaio = ultimoPontoFixo + direcao.normalized * 0.02f;
+
         RaycastHit2D hit = Physics2D.Raycast(ultimoPontoFixo, direcao, distancia, layerColisao);
 
         if (hit.collider != null)
@@ -48,9 +51,49 @@ public class WireRenderer : MonoBehaviour
                 extensor.AtivarExtensao();
             }
 
-            Vector3 pontoQuina = (Vector3)hit.point + ((Vector3)hit.normal * distanciaDaQuina);
-            pontosDoFio.Insert(pontosDoFio.Count - 1, pontoQuina);
+            Vector3 pontoQuina;
+
+            // SE FOR UM BOX COLLIDER: Calcula matematicamente o canto do retângulo
+            if (hit.collider is BoxCollider2D boxCollider)
+            {
+                pontoQuina = CalcularQuinaExata(boxCollider, hit.point);
+            }
+            else
+            {
+                // Fallback padrão usando a normal caso use outro tipo de colisor (ex: Polygon)
+                pontoQuina = (Vector3)hit.point + ((Vector3)hit.normal * distanciaDaQuina);
+            }
+
+            // Evita criar quinas redundantes coladas uma na outra
+            if (Vector3.Distance(pontoQuina, ultimoPontoFixo) > 0.05f)
+            {
+                pontosDoFio.Insert(pontosDoFio.Count - 1, pontoQuina);
+            }
+
         }
+    }
+    //método que encontra o vértice mais proximo do boxcollider e joga o ponto para fora
+    Vector3 CalcularQuinaExata(BoxCollider2D box, Vector2 pontoHit)
+    {
+        // Converte o ponto de impacto global para o espaço local do objeto
+        Vector3 localHit = box.transform.InverseTransformPoint(pontoHit);
+
+        float extentsX = box.size.x / 2f;
+        float extentsY = box.size.y / 2f;
+        Vector2 offset = box.offset;
+
+        // Identifica qual das 4 quinas do retângulo está mais próxima do local do impacto
+        float quinaX = localHit.x > offset.x ? offset.x + extentsX : offset.x - extentsX;
+        float quinaY = localHit.y > offset.y ? offset.y + extentsY : offset.y - extentsY;
+
+        Vector3 quinaLocal = new Vector3(quinaX, quinaY, 0);
+        Vector3 quinaMundo = box.transform.TransformPoint(quinaLocal);
+
+        // Calcula uma direção a partir do centro do colisor para a quina para empurrar o fio "para fora"
+        Vector3 direcaoParaFora = (quinaMundo - box.transform.position).normalized;
+
+        // Retorna a posição final com a folga de segurança aplicada
+        return quinaMundo + direcaoParaFora * distanciaDaQuina;
     }
 
     void VerificarRetorno()

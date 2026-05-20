@@ -6,6 +6,7 @@ public class Wire_Extender : MonoBehaviour
     [SerializeField] private float bonusMetros = 5f;
     private bool jaAtivado = false;
 
+
     // Referência ao script de coleta original (opcional, para desativar a coleta manual)
     private ItemColetavel itemColetavel;
 
