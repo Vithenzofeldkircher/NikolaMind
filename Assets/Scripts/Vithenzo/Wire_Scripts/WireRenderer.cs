@@ -38,10 +38,14 @@ public class WireRenderer : MonoBehaviour
         Vector3 direcao = transform.position - ultimoPontoFixo;
         float distancia = Vector3.Distance(transform.position, ultimoPontoFixo);
 
-        //muda o fio um pouco pro lado
+        // Avança a origem do raio levemente para frente para não colidir na própria quina atual
         Vector3 origemRaio = ultimoPontoFixo + direcao.normalized * 0.02f;
+        float distanciaAjustada = distancia - 0.02f;
 
-        RaycastHit2D hit = Physics2D.Raycast(ultimoPontoFixo, direcao, distancia, layerColisao);
+        if (distanciaAjustada <= 0) return;
+
+        // Passando a origem e direção corretas e normalizadas
+        RaycastHit2D hit = Physics2D.Raycast(origemRaio, direcao.normalized, distanciaAjustada, layerColisao);
 
         if (hit.collider != null)
         {
@@ -60,7 +64,7 @@ public class WireRenderer : MonoBehaviour
             }
             else
             {
-                // Fallback padrão usando a normal caso use outro tipo de colisor (ex: Polygon)
+                // Fallback padrão usando a normal caso use outro tipo de colisor
                 pontoQuina = (Vector3)hit.point + ((Vector3)hit.normal * distanciaDaQuina);
             }
 
@@ -69,10 +73,10 @@ public class WireRenderer : MonoBehaviour
             {
                 pontosDoFio.Insert(pontosDoFio.Count - 1, pontoQuina);
             }
-
         }
     }
-    //método que encontra o vértice mais proximo do boxcollider e joga o ponto para fora
+
+    // Método que encontra o vértice mais próximo do boxcollider e joga o ponto para fora
     Vector3 CalcularQuinaExata(BoxCollider2D box, Vector2 pontoHit)
     {
         // Converte o ponto de impacto global para o espaço local do objeto
@@ -89,8 +93,9 @@ public class WireRenderer : MonoBehaviour
         Vector3 quinaLocal = new Vector3(quinaX, quinaY, 0);
         Vector3 quinaMundo = box.transform.TransformPoint(quinaLocal);
 
-        // Calcula uma direção a partir do centro do colisor para a quina para empurrar o fio "para fora"
-        Vector3 direcaoParaFora = (quinaMundo - box.transform.position).normalized;
+        // CORREÇÃO 2: Usa box.bounds.center em vez de box.transform.position 
+        // para garantir o centro real do colisor mesmo com offsets ou pivots alterados
+        Vector3 direcaoParaFora = (quinaMundo - box.bounds.center).normalized;
 
         // Retorna a posição final com a folga de segurança aplicada
         return quinaMundo + direcaoParaFora * distanciaDaQuina;
@@ -102,10 +107,12 @@ public class WireRenderer : MonoBehaviour
         if (pontosDoFio.Count > 2)
         {
             Vector3 pontoPenultimo = pontosDoFio[pontosDoFio.Count - 3];
-            float distancia = Vector3.Distance(transform.position, pontoPenultimo);
+            Vector3 direcao = pontoPenultimo - transform.position;
+            float distancia = direcao.magnitude;
 
-            // Raio entre o player e o antepenúltimo ponto
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, pontoPenultimo - transform.position, distancia, layerColisao);
+            // CORREÇÃO 3: Direção normalizada e uma pequena redução na distância máxima (-0.05f)
+            // para evitar que o raio raspe na quina atual e impeça o fio de desenrolar
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direcao.normalized, distancia - 0.05f, layerColisao);
 
             // Se não houver nada bloqueando a visão direta para o ponto anterior, removemos a quina atual
             if (hit.collider == null)
