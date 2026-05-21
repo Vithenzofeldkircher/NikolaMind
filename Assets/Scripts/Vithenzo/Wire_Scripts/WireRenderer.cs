@@ -93,7 +93,7 @@ public class WireRenderer : MonoBehaviour
         Vector3 quinaLocal = new Vector3(quinaX, quinaY, 0);
         Vector3 quinaMundo = box.transform.TransformPoint(quinaLocal);
 
-        // CORREÇÃO 2: Usa box.bounds.center em vez de box.transform.position 
+        // CORREÇÃO Usa box.bounds.center em vez de box.transform.position 
         // para garantir o centro real do colisor mesmo com offsets ou pivots alterados
         Vector3 direcaoParaFora = (quinaMundo - box.bounds.center).normalized;
 

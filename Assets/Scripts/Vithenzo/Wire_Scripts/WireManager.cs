@@ -5,7 +5,7 @@ public class WireManager : MonoBehaviour
     public static WireManager Instance;
 
     [Header("Configurações")]
-    public float fioMaximo = 10f;
+    public float fioMaximo;
     public bool carregandoFio = false;
     public bool missaoConcluida = false;
 
