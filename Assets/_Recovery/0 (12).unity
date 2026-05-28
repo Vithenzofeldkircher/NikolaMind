@@ -2337,7 +2337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElectricalBox
   tipo: 0
-  metrosIniciais: 100
+  metrosIniciais: 65
   jaUsada: 0
 --- !u!61 &547847546
 BoxCollider2D:
@@ -6810,11 +6810,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 75238020795985728, guid: b716db2da2809c544bf64f6102eb294d, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1140051637017408792, guid: b716db2da2809c544bf64f6102eb294d, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2374386299983877439, guid: b716db2da2809c544bf64f6102eb294d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6870,7 +6870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7353964732393267193, guid: b716db2da2809c544bf64f6102eb294d, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5328484524155211357, guid: b716db2da2809c544bf64f6102eb294d, type: 3}
@@ -22367,7 +22367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60735a1183e8d1b49851d864b60fc7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireManager
-  fioMaximo: 100
+  fioMaximo: 165
   carregandoFio: 0
   missaoConcluida: 0
   triggerRecuperarFio: {fileID: 1453915467}

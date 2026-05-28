@@ -12,6 +12,12 @@ public class InteratvelGenerico : MonoBehaviour, IInteractable
         // Se estiver configurado para ser o fio
         if (ehParaPegarFio)
         {
+            if (Pickup_Manager.Instance != null && Pickup_Manager.Instance.estaCarregandoItem)
+            {
+                Debug.Log("Não pode pegar o fio! Suas mãos estão ocupadas com uma caixa.");
+                return; // Para o código aqui e impede de pegar o fio
+            }
+
             if (WireManager.Instance != null)
             {
                 WireManager.Instance.RetomarFio();

@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class ItemColetavel : MonoBehaviour, IInteractable
 {
+
     public void Active()
     {
+
         // 1. O Pickup_Manager é necessario para este script funcionar
         if (Pickup_Manager.Instance == null)
         {
@@ -20,9 +22,16 @@ public class ItemColetavel : MonoBehaviour, IInteractable
         }
 
         // 3. Lógica de coleta normal
-        if (!Pickup_Manager.Instance.estaCarregandoItem)
+        if (Pickup_Manager.Instance.estaCarregandoItem)
         {
-            Pickup_Manager.Instance.SegurarItem(this.gameObject);
+            Debug.Log("Mãos ocupadas com outro item!");
+            return;
         }
+
+        // 4. Executa uma coleta, ela é imediata CORREÇÂO de bug de duplos itens sendo pegos.
+        Pickup_Manager.Instance.SegurarItem(this.gameObject);
+
+        
+
     }
 }

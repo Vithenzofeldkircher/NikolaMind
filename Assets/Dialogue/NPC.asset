@@ -38,8 +38,9 @@ MonoBehaviour:
     IdPersonagem: 0
   - nomePersonagem: ???
     texto: "Ah e cuidado com fio que voce vai levar da primeira caixa de energia
-      at\xE9 a outra caixa que es\xB4ta do outro lado do galp\xE3o, ele n\xE3o pode
-      ficar enroscado em nenhum obstaculo no caminho."
+      at\xE9 a outra caixa que esta do outro lado do galp\xE3o, ele n\xE3o pode ficar
+      enroscado em nenhum obstaculo no caminho e voce tem que conectar ele nas maquinas,
+      elas ainda est\xE3o mas caixas mas isso n\xE3o importa."
     IdPersonagem: 0
   ehFimDeQuest: 1
   dificuldade: 2
