@@ -26,7 +26,7 @@ public class Wire_Extender : MonoBehaviour
         if (WireManager.Instance != null)
         {
             WireManager.Instance.fioMaximo += bonusMetros;
-            Debug.Log($"Fio aumentado em {bonusMetros}m!");
+            Debug.Log($"Fio aumentado em {bonusMetros}metros!");
         }
 
         // Bloqueia a interação de pegar o item (ItemColetavel)
