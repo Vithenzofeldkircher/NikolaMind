@@ -55,6 +55,11 @@ public class WireRenderer : MonoBehaviour
                 extensor.AtivarExtensao();
             }
 
+            if (hit.collider.TryGetComponent(out Caixa_Enrolar caixa))
+            {
+                caixa.Enrolar_Fio();
+            }
+
             Vector3 pontoQuina;
 
             // SE FOR UM BOX COLLIDER: Calcula matematicamente o canto do retângulo
@@ -110,13 +115,23 @@ public class WireRenderer : MonoBehaviour
             Vector3 direcao = pontoPenultimo - transform.position;
             float distancia = direcao.magnitude;
 
-            // CORREÇÃO 3: Direção normalizada e uma pequena redução na distância máxima (-0.05f)
-            // para evitar que o raio raspe na quina atual e impeça o fio de desenrolar
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direcao.normalized, distancia - 0.05f, layerColisao);
 
             // Se não houver nada bloqueando a visão direta para o ponto anterior, removemos a quina atual
             if (hit.collider == null)
             {
+                Vector3 pontoRemovido = pontosDoFio[pontosDoFio.Count - 2];
+
+                //Usamos OverlapCircle com um raio de 0.2f para compensar a folga da quina
+                Collider2D colQuina = Physics2D.OverlapCircle(pontoRemovido, 0.2f, layerColisao);
+
+                // Só tenta pegar o componente se colQuina NÃO for nulo
+                if (colQuina != null && colQuina.TryGetComponent(out Caixa_Enrolar caixa))
+                {
+                    caixa.DesenrolarFio();
+                }
+
+                // Remove o ponto da lista com segurança
                 pontosDoFio.RemoveAt(pontosDoFio.Count - 2);
             }
         }

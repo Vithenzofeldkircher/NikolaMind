@@ -1790,7 +1790,8 @@ GameObject:
   - component: {fileID: 478886356}
   - component: {fileID: 478886358}
   - component: {fileID: 478886359}
-  m_Layer: 13
+  - component: {fileID: 478886360}
+  m_Layer: 9
   m_Name: f (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1916,6 +1917,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &478886360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478886355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &488876293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,7 +2119,8 @@ GameObject:
   - component: {fileID: 528551465}
   - component: {fileID: 528551467}
   - component: {fileID: 528551468}
-  m_Layer: 13
+  - component: {fileID: 528551469}
+  m_Layer: 9
   m_Name: f (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2230,6 +2246,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &528551469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528551464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &547847542
 GameObject:
   m_ObjectHideFlags: 0
@@ -3919,7 +3949,8 @@ GameObject:
   - component: {fileID: 870797122}
   - component: {fileID: 870797124}
   - component: {fileID: 870797125}
-  m_Layer: 13
+  - component: {fileID: 870797126}
+  m_Layer: 9
   m_Name: f (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4045,6 +4076,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &870797126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870797121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &914245692
 GameObject:
   m_ObjectHideFlags: 0
@@ -4401,7 +4446,8 @@ GameObject:
   - component: {fileID: 979366409}
   - component: {fileID: 979366411}
   - component: {fileID: 979366412}
-  m_Layer: 13
+  - component: {fileID: 979366413}
+  m_Layer: 9
   m_Name: f (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4527,6 +4573,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &979366413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979366408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &980326003
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,7 +5420,8 @@ GameObject:
   - component: {fileID: 1154317864}
   - component: {fileID: 1154317866}
   - component: {fileID: 1154317867}
-  m_Layer: 13
+  - component: {fileID: 1154317868}
+  m_Layer: 9
   m_Name: f (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5486,6 +5547,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &1154317868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154317863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1194957999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5634,7 +5709,9 @@ GameObject:
   - component: {fileID: 1205355571}
   - component: {fileID: 1205355573}
   - component: {fileID: 1205355574}
-  m_Layer: 13
+  - component: {fileID: 1205355575}
+  - component: {fileID: 1205355576}
+  m_Layer: 9
   m_Name: f (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5650,7 +5727,7 @@ Transform:
   m_GameObject: {fileID: 1205355570}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.81, y: 2.01, z: 0}
+  m_LocalPosition: {x: -4.85, y: -4.91, z: 0}
   m_LocalScale: {x: 0.045595106, y: 0.04091818, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5760,6 +5837,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &1205355575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205355570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
+--- !u!114 &1205355576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205355570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 0}
+  sprite_Mudado: {fileID: 0}
 --- !u!1 &1206321816
 GameObject:
   m_ObjectHideFlags: 0
@@ -6395,7 +6500,8 @@ GameObject:
   - component: {fileID: 1385981249}
   - component: {fileID: 1385981251}
   - component: {fileID: 1385981252}
-  m_Layer: 13
+  - component: {fileID: 1385981253}
+  m_Layer: 9
   m_Name: f (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6521,6 +6627,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &1385981253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385981248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1404839364
 GameObject:
   m_ObjectHideFlags: 0
@@ -6674,7 +6794,8 @@ GameObject:
   - component: {fileID: 1474314843}
   - component: {fileID: 1474314845}
   - component: {fileID: 1474314846}
-  m_Layer: 13
+  - component: {fileID: 1474314847}
+  m_Layer: 9
   m_Name: f (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6800,6 +6921,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &1474314847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474314842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1001 &1494421463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7273,7 +7408,8 @@ GameObject:
   - component: {fileID: 1584698259}
   - component: {fileID: 1584698261}
   - component: {fileID: 1584698262}
-  m_Layer: 13
+  - component: {fileID: 1584698263}
+  m_Layer: 9
   m_Name: f (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7399,6 +7535,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &1584698263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584698258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1585061883
 GameObject:
   m_ObjectHideFlags: 0
@@ -7821,7 +7971,8 @@ GameObject:
   - component: {fileID: 1660829992}
   - component: {fileID: 1660829994}
   - component: {fileID: 1660829995}
-  m_Layer: 13
+  - component: {fileID: 1660829996}
+  m_Layer: 9
   m_Name: f (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7947,6 +8098,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &1660829996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660829991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1706221102
 GameObject:
   m_ObjectHideFlags: 0
@@ -8895,7 +9060,8 @@ GameObject:
   - component: {fileID: 1902634976}
   - component: {fileID: 1902634978}
   - component: {fileID: 1902634979}
-  m_Layer: 13
+  - component: {fileID: 1902634980}
+  m_Layer: 9
   m_Name: f (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9021,6 +9187,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &1902634980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902634975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1915619243
 GameObject:
   m_ObjectHideFlags: 0
@@ -9109,7 +9289,8 @@ GameObject:
   - component: {fileID: 1922597429}
   - component: {fileID: 1922597431}
   - component: {fileID: 1922597432}
-  m_Layer: 13
+  - component: {fileID: 1922597433}
+  m_Layer: 9
   m_Name: f (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9235,6 +9416,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 32.45, y: 35.01}
   m_EdgeRadius: 0
+--- !u!114 &1922597433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922597428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
+  sprite_Normal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  sprite_Mudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1935622761
 GameObject:
   m_ObjectHideFlags: 0
@@ -22354,7 +22549,7 @@ MonoBehaviour:
     m_Bits: 512
   pontosDoFio:
   - {x: 0, y: 0, z: 0}
-  distanciaDaQuina: 0.2
+  distanciaDaQuina: 0.3
 --- !u!114 &9039094945312763102
 MonoBehaviour:
   m_ObjectHideFlags: 0

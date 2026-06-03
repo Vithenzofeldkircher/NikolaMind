@@ -6,13 +6,15 @@ public class Caixa_Enrolar : MonoBehaviour
     [SerializeField] private Sprite sprite_Normal;
     [SerializeField] private Sprite sprite_Mudado;
 
-    private SpriteRenderer Sprite_Render;
+    private SpriteRenderer SP;
     private bool ja_tem_fio = false;
 
-    void awake()
+    void Awake()
     {
-        Sprite_Render = GetComponent<SpriteRenderer>();
-        if(sprite_Normal != null ) Sprite_Render.sprite = sprite_Normal;
+        SP = GetComponent<SpriteRenderer>();
+        if (sprite_Normal != null && SP != null)
+            SP.sprite = sprite_Normal;
+
     }
 
     public void Enrolar_Fio()
@@ -20,15 +22,19 @@ public class Caixa_Enrolar : MonoBehaviour
         if(ja_tem_fio ) return;
 
         ja_tem_fio = true;
-        if(sprite_Mudado != null)
-        {
-            //spriteRenderer.sprite = sprite_Mudado;
-        }
+        if (sprite_Mudado != null) SP.sprite = sprite_Mudado;
+        print("Fio enrolado na caixa {gameObject.name}");
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DesenrolarFio()
     {
-        
+        if (!ja_tem_fio) return;
+
+        ja_tem_fio = false;
+        if (sprite_Normal != null) SP.sprite = sprite_Normal;
+        Debug.Log($"Fio desenrolado da caixa: {gameObject.name}");
     }
 }
+
+
