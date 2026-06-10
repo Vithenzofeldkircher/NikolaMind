@@ -8,6 +8,9 @@ public class WireRenderer : MonoBehaviour
     private LineRenderer line;
     public List<Vector3> pontosDoFio = new List<Vector3>();
 
+    // Variável para guardar a referência direta da última caixa que o fio colidiu
+    private Caixa_Enrolar Ultima_Caixa_Ativada;
+
     [SerializeField] private float distanciaDaQuina = 0.1f; // Folga para o fio não entrar na parede
 
     void Start()
@@ -38,42 +41,38 @@ public class WireRenderer : MonoBehaviour
         Vector3 direcao = transform.position - ultimoPontoFixo;
         float distancia = Vector3.Distance(transform.position, ultimoPontoFixo);
 
-        // Avança a origem do raio levemente para frente para não colidir na própria quina atual
         Vector3 origemRaio = ultimoPontoFixo + direcao.normalized * 0.02f;
         float distanciaAjustada = distancia - 0.02f;
 
         if (distanciaAjustada <= 0) return;
 
-        // Passando a origem e direção corretas e normalizadas
         RaycastHit2D hit = Physics2D.Raycast(origemRaio, direcao.normalized, distanciaAjustada, layerColisao);
 
         if (hit.collider != null)
         {
-            // Verifica se o que o fio tocou é um extensor
             if (hit.collider.TryGetComponent(out Wire_Extender extensor))
             {
                 extensor.AtivarExtensao();
             }
 
+            // CORREÇÃO: Salva a referência da caixa ao colidir, assim salva qual caixa foi ativada
             if (hit.collider.TryGetComponent(out Caixa_Enrolar caixa))
             {
                 caixa.Enrolar_Fio();
+                Ultima_Caixa_Ativada = caixa;
             }
 
             Vector3 pontoQuina;
 
-            // SE FOR UM BOX COLLIDER: Calcula matematicamente o canto do retângulo
             if (hit.collider is BoxCollider2D boxCollider)
             {
                 pontoQuina = CalcularQuinaExata(boxCollider, hit.point);
             }
             else
             {
-                // Fallback padrão usando a normal caso use outro tipo de colisor
                 pontoQuina = (Vector3)hit.point + ((Vector3)hit.normal * distanciaDaQuina);
             }
 
-            // Evita criar quinas redundantes coladas uma na outra
             if (Vector3.Distance(pontoQuina, ultimoPontoFixo) > 0.05f)
             {
                 pontosDoFio.Insert(pontosDoFio.Count - 1, pontoQuina);
@@ -81,34 +80,27 @@ public class WireRenderer : MonoBehaviour
         }
     }
 
-    // Método que encontra o vértice mais próximo do boxcollider e joga o ponto para fora
     Vector3 CalcularQuinaExata(BoxCollider2D box, Vector2 pontoHit)
     {
-        // Converte o ponto de impacto global para o espaço local do objeto
         Vector3 localHit = box.transform.InverseTransformPoint(pontoHit);
 
         float extentsX = box.size.x / 2f;
         float extentsY = box.size.y / 2f;
         Vector2 offset = box.offset;
 
-        // Identifica qual das 4 quinas do retângulo está mais próxima do local do impacto
         float quinaX = localHit.x > offset.x ? offset.x + extentsX : offset.x - extentsX;
         float quinaY = localHit.y > offset.y ? offset.y + extentsY : offset.y - extentsY;
 
         Vector3 quinaLocal = new Vector3(quinaX, quinaY, 0);
         Vector3 quinaMundo = box.transform.TransformPoint(quinaLocal);
 
-        // CORREÇÃO Usa box.bounds.center em vez de box.transform.position 
-        // para garantir o centro real do colisor mesmo com offsets ou pivots alterados
         Vector3 direcaoParaFora = (quinaMundo - box.bounds.center).normalized;
 
-        // Retorna a posição final com a folga de segurança aplicada
         return quinaMundo + direcaoParaFora * distanciaDaQuina;
     }
 
     void VerificarRetorno()
     {
-        // Se houver mais de 2 pontos, verificamos se o player voltou e "desenrolou" da quina
         if (pontosDoFio.Count > 2)
         {
             Vector3 pontoPenultimo = pontosDoFio[pontosDoFio.Count - 3];
@@ -117,18 +109,15 @@ public class WireRenderer : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direcao.normalized, distancia - 0.05f, layerColisao);
 
-            // Se não houver nada bloqueando a visão direta para o ponto anterior, removemos a quina atual
+            // Se não houver nada bloqueando a visão do ponto anterior, o fio desenrola da quina
             if (hit.collider == null)
             {
-                Vector3 pontoRemovido = pontosDoFio[pontosDoFio.Count - 2];
-
-                //Usamos OverlapCircle com um raio de 0.2f para compensar a folga da quina
-                Collider2D colQuina = Physics2D.OverlapCircle(pontoRemovido, 0.2f, layerColisao);
-
-                // Só tenta pegar o componente se colQuina NÃO for nulo
-                if (colQuina != null && colQuina.TryGetComponent(out Caixa_Enrolar caixa))
+                // CORREÇÃO: Removemos o OverlapCircle problemático.
+                // Se o script guardava uma caixa ativa, manda ela voltar ao sprite normal direto!
+                if (Ultima_Caixa_Ativada != null)
                 {
-                    caixa.DesenrolarFio();
+                    Ultima_Caixa_Ativada.DesenrolarFio();
+                    Ultima_Caixa_Ativada = null; // Limpa a variável para a próxima colisão
                 }
 
                 // Remove o ponto da lista com segurança
@@ -140,8 +129,8 @@ public class WireRenderer : MonoBehaviour
     public void InicializarFio(Vector3 pos)
     {
         pontosDoFio.Clear();
-        pontosDoFio.Add(pos); // Ponto na caixa de origem
-        pontosDoFio.Add(transform.position); // Ponto no Player
+        pontosDoFio.Add(pos);
+        pontosDoFio.Add(transform.position);
     }
 
     public void FixarUltimoPonto(Vector3 pos) => pontosDoFio[pontosDoFio.Count - 1] = pos;
