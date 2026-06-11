@@ -4,6 +4,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(LineRenderer))]
 public class WireRenderer : MonoBehaviour
 {
+    //fazer de uma maneira em que os pontos fiquem fixos e "imutaveis" quando o fio atingir a caixa, mechendo apenas no ultimo ponto, mas ainda sendo capaz de retirar esses pontos fixos 
     public LayerMask layerColisao; // No Inspetor, selecione a Layer "obstaculo"
     private LineRenderer line;
     public List<Vector3> pontosDoFio = new List<Vector3>();
