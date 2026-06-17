@@ -6695,8 +6695,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1453915470}
   - component: {fileID: 1453915469}
-  - component: {fileID: 1453915472}
   - component: {fileID: 1453915471}
+  - component: {fileID: 1453915472}
   m_Layer: 0
   m_Name: Fio_No_Chao_Trigger
   m_TagString: Untagged
@@ -6778,9 +6778,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1453915467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 342b6f5b0f4ab4f4aa925cbe5a3e8f79, type: 3}
+  m_Script: {fileID: 11500000, guid: f61adb8315c00e9419fd2db6f5e08505, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteratvelGenerico
+  m_EditorClassIdentifier: Assembly-CSharp::WirePickupTrigger
+  canvasPromptInteracao: {fileID: 488876293}
 --- !u!1 &1474314842
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,8 @@ public class WireManager : MonoBehaviour
 
     void Update()
     {
-        if (carregandoFio && Input.GetKeyDown(KeyCode.G))
+        //solta o fio usando a tecla G
+        if (carregandoFio && Input.GetButtonDown("Largar"))
         {
             LargarFio();
         }
@@ -45,9 +46,13 @@ public class WireManager : MonoBehaviour
 
         if (triggerRecuperarFio != null)
         {
+            // Define a posição do gatilho exatamente onde o player soltou o cabo
             triggerRecuperarFio.transform.position = transform.position;
             triggerRecuperarFio.SetActive(true);
         }
+
+        // SOLID: Informa a física que o último ponto precisa ficar fixado estaticamente no chão
+        physicsHandler.FixarUltimoPonto(transform.position);
     }
 
     public void RetomarFio()
@@ -56,6 +61,7 @@ public class WireManager : MonoBehaviour
         carregandoFio = true;
 
         if (triggerRecuperarFio != null) triggerRecuperarFio.SetActive(false);
+        print("da pra pegar o fio de volta");
     }
 
     public void FinalizarConexao(Vector3 posicaoDestino)

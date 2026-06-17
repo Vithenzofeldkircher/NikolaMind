@@ -51,7 +51,7 @@ public class WirePhysics : MonoBehaviour
         // 4. Se o raio colidiu com algo, significa que o fio precisa dobrar e criar uma nova quina.
         if (hit.collider != null)
         {
-            // 5. Inversão de Dependência (DIP/SOLID): Se o objeto implementa nossa interface, nós o notificamos.
+            // 5. Inversão de Dependência: Se o objeto implementa nossa interface, nós o notificamos.
             if (hit.collider.TryGetComponent(out IInteragivelFio interagivel))
             {
                 interagivel.AoTocarFio();
