@@ -1,38 +1,78 @@
 using UnityEngine;
 
-public class Wire_Extender : MonoBehaviour
+public class Wire_Extender : MonoBehaviour, IInteragivelFioDiscreto
 {
-    [Header("Configurações")]
+    [Header("Configurações do Extensor")]
     [SerializeField] private float bonusMetros = 5f;
+    [SerializeField] private Color corFioConectado = Color.green;
+
+    private Color corFioOriginal;
     private bool jaAtivado = false;
+    private LineRenderer lineRendererRef;
 
-    //fazer um a mecanica onde o objeto aumenta o numero do fio porém que não seja necessario enrolar o fio no proprio objeto e sim apenas interagir e conectar ele.
+    // Guardamos a referência do WirePhysics que realizou a conexão para poder restaurar a cor depois
+    private WirePhysics physicsHandlerAlvo;
 
-    // Referência ao script de coleta original (opcional, para desativar a coleta manual)
-    private ItemColetavel itemColetavel;
-
-    void Awake()
+    public void InteragirComFio()
     {
-        itemColetavel = GetComponent<ItemColetavel>();
+        // Se ainda não foi ativado, conecta o cabo e concede o bônus
+        if (!jaAtivado)
+        {
+            ConectarExtensor();
+        }
+        else
+        {
+            // Se já estava ativado e o jogador clicou novamente, desconecta o cabo
+            DesconectarExtensor();
+        }
     }
 
-    public void AtivarExtensao()
+    private void ConectarExtensor()
     {
-        if (jaAtivado) return;
+        if (WireManager.Instance == null) return;
 
+        // Tenta obter o manipulador de física através do Manager global de forma dinâmica
+        physicsHandlerAlvo = WireManager.Instance.GetComponent<WirePhysics>();
+        if (physicsHandlerAlvo == null) return;
+
+        // Tenta obter o LineRenderer para realizar a troca de cores cosmética
+        lineRendererRef = physicsHandlerAlvo.GetComponent<LineRenderer>();
+
+        if (lineRendererRef != null)
+        {
+            // Salva a cor original antes de aplicar a nova cor de feedback
+            corFioOriginal = lineRendererRef.startColor;
+            lineRendererRef.startColor = corFioConectado;
+            lineRendererRef.endColor = corFioConectado;
+        }
+
+        // Aplica as regras de negócio no Manager
+        WireManager.Instance.fioMaximo += bonusMetros;
         jaAtivado = true;
 
-        // Aumenta o fio no Manager
-        if (WireManager.Instance != null)
+        Debug.Log($"[Extensor] Fio conectado! Capacidade aumentada em +{bonusMetros}m.");
+    }
+
+    private void DesconectarExtensor()
+    {
+        if (WireManager.Instance == null || physicsHandlerAlvo == null) return;
+
+        // Remove o bônus concedido anteriormente de forma limpa
+        WireManager.Instance.fioMaximo -= bonusMetros;
+
+        // Restaura a paleta de cores original do LineRenderer
+        if (lineRendererRef != null)
         {
-            WireManager.Instance.fioMaximo += bonusMetros;
-            Debug.Log($"Fio aumentado em {bonusMetros}metros!");
+            lineRendererRef.startColor = corFioOriginal;
+            lineRendererRef.endColor = corFioOriginal;
         }
 
-        // Bloqueia a interação de pegar o item (ItemColetavel)
-        if (itemColetavel != null)
-        {
-            itemColetavel.enabled = false;
-        }
+        jaAtivado = false;
+        physicsHandlerAlvo = null;
+
+        Debug.Log("[Extensor] Fio desconectado. Bônus de metros removido.");
     }
+
+    // Método auxiliar público para que outros scripts verifiquem se o extensor está em uso
+    public bool EstáAtivo() => jaAtivado;
 }
