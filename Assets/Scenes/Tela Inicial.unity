@@ -2156,7 +2156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cf10bbfe8bd8c4587d0dc7041594e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffecOfButton
-  targetScale: {x: 1.1, y: 1.1, z: 1.1}
+  targetScale: {x: 2.5, y: 2.5, z: 2.5}
 --- !u!1 &1688367257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,6 +2169,7 @@ GameObject:
   - component: {fileID: 1688367261}
   - component: {fileID: 1688367260}
   - component: {fileID: 1688367259}
+  - component: {fileID: 1688367262}
   m_Layer: 5
   m_Name: "FecharConfigura\xE7\xF5es"
   m_TagString: Untagged
@@ -2185,17 +2186,17 @@ RectTransform:
   m_GameObject: {fileID: 1688367257}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2144491913}
   m_Father: {fileID: 671072064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -784, y: -486}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 94.399994, y: -440.5}
+  m_SizeDelta: {x: 160, y: -1050}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1688367259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2218,7 +2219,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.31764707, g: 0.28627452, b: 0.90588236, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2290,6 +2291,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688367257}
   m_CullTransparentMesh: 1
+--- !u!114 &1688367262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688367257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69cf10bbfe8bd8c4587d0dc7041594e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffecOfButton
+  targetScale: {x: 1.1, y: 1.1, z: 1.1}
 --- !u!1 &1700085169
 GameObject:
   m_ObjectHideFlags: 0
