@@ -9,8 +9,10 @@ public class WireManager : MonoBehaviour
     public bool carregandoFio = false;
     public bool missaoConcluida = false;
 
-    [Header("Interação")]
-    [SerializeField] private GameObject triggerRecuperarFio; // Arraste aqui um Empty com o seu script Interect
+    [Header("Referências")]
+    [SerializeField] private GameObject triggerRecuperarFio;
+    // Agora o Manager aponta para a Física, não para o Renderer
+    [SerializeField] private WirePhysics physicsHandler;
 
     private void Awake() => Instance = this;
 
@@ -21,7 +23,6 @@ public class WireManager : MonoBehaviour
 
     void Update()
     {
-        // Verifica se o jogador apertou G para largar o fio
         if (carregandoFio && Input.GetKeyDown(KeyCode.G))
         {
             LargarFio();
@@ -33,14 +34,15 @@ public class WireManager : MonoBehaviour
         if (missaoConcluida) return;
         fioMaximo = metros;
         carregandoFio = true;
-        GetComponent<WireRenderer>().InicializarFio(posicaoInicial);
+
+        // Chamada delegada para a Física
+        physicsHandler.InicializarFio(posicaoInicial);
     }
 
     public void LargarFio()
     {
         carregandoFio = false;
 
-        // Ativa o trigger de interação na posição onde o player soltou o fio
         if (triggerRecuperarFio != null)
         {
             triggerRecuperarFio.transform.position = transform.position;
@@ -53,7 +55,6 @@ public class WireManager : MonoBehaviour
         if (missaoConcluida) return;
         carregandoFio = true;
 
-        // Esconde o trigger de interação pois o fio já está com o player
         if (triggerRecuperarFio != null) triggerRecuperarFio.SetActive(false);
     }
 
@@ -62,29 +63,28 @@ public class WireManager : MonoBehaviour
         carregandoFio = false;
         missaoConcluida = true;
         if (triggerRecuperarFio != null) triggerRecuperarFio.SetActive(false);
-        GetComponent<WireRenderer>().FixarUltimoPonto(posicaoDestino);
+
+        // Chamada delegada para a Física
+        physicsHandler.FixarUltimoPonto(posicaoDestino);
     }
 
     public bool PodeMoverPara(Vector3 novaPosicao)
     {
-        // Se não estiver carregando o fio, pode mover livremente
         if (!carregandoFio) return true;
 
-        WireRenderer renderer = GetComponent<WireRenderer>();
-        if (renderer == null || renderer.pontosDoFio.Count < 2) return true;
+        // Acessamos os dados através da Física (que é o dono da lista de pontos)
+        var pontos = physicsHandler.pontosDoFio;
+        if (pontos == null || pontos.Count < 2) return true;
 
-        // Calcula a distância fixa (todos os segmentos menos o último que move)
         float distanciaFixa = 0;
-        for (int i = 0; i < renderer.pontosDoFio.Count - 2; i++)
+        for (int i = 0; i < pontos.Count - 2; i++)
         {
-            distanciaFixa += Vector3.Distance(renderer.pontosDoFio[i], renderer.pontosDoFio[i + 1]);
+            distanciaFixa += Vector3.Distance(pontos[i], pontos[i + 1]);
         }
 
-        // Soma a distância do penúltimo ponto até a posição para onde o player quer ir
-        float distanciaSimulada = distanciaFixa + Vector3.Distance(renderer.pontosDoFio[renderer.pontosDoFio.Count - 2], novaPosicao);
+        float distanciaSimulada = distanciaFixa + Vector3.Distance(pontos[pontos.Count - 2], novaPosicao);
 
-        // Permite se: a nova distância for menor que o limite OU se estiver voltando (diminuindo a distância)
-        return distanciaSimulada <= fioMaximo || distanciaSimulada < renderer.CalcularDistanciaTotal();
+        // Chamada delegada para o método de cálculo da Física
+        return distanciaSimulada <= fioMaximo || distanciaSimulada < physicsHandler.CalcularDistanciaTotal();
     }
-
 }

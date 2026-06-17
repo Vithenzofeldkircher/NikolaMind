@@ -6781,6 +6781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342b6f5b0f4ab4f4aa925cbe5a3e8f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteratvelGenerico
+  ehParaPegarFio: 1
+  nomeDaCena: 
 --- !u!1 &1474314842
 GameObject:
   m_ObjectHideFlags: 0
@@ -22154,7 +22156,6 @@ GameObject:
   - component: {fileID: 9039094945312763102}
   - component: {fileID: 9039094945312763101}
   - component: {fileID: 9039094945312763100}
-  - component: {fileID: 9039094945312763103}
   m_Layer: 0
   m_Name: Wire Manager
   m_TagString: Untagged
@@ -22480,7 +22481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireUI
   textoMetros: {fileID: 1206321817}
-  wirePhysics: {fileID: 9039094945312763103}
+  wirePhysics: {fileID: 0}
 --- !u!114 &9039094945312763101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22509,25 +22510,7 @@ MonoBehaviour:
   carregandoFio: 0
   missaoConcluida: 0
   triggerRecuperarFio: {fileID: 1453915467}
-  physicsHandler: {fileID: 9039094945312763103}
---- !u!114 &9039094945312763103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6235824823264621937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4770551907bf4d440bfcf40fe72a4d66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WirePhysics
-  layerColisao:
-    serializedVersion: 2
-    m_Bits: 512
-  distanciaDaQuina: 0.1
-  visualizadorFio: {fileID: 9039094945312763101}
-  pontosDoFio: []
+  physicsHandler: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

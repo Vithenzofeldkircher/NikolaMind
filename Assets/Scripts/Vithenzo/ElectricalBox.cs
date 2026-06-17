@@ -40,7 +40,7 @@ public class ElectricalBox : MonoBehaviour, IInteractable
         else if (tipo == TipoCaixa.Destino && playerWire.carregandoFio)
         {
             // ACESSO AO RENDERER: Precisamos calcular quanto fio sobra
-            WireRenderer renderer = playerWire.GetComponent<WireRenderer>();
+            WirePhysics renderer = playerWire.GetComponent<WirePhysics>();
             float distanciaGasta = renderer.CalcularDistanciaTotal();
             float fioRestante = playerWire.fioMaximo - distanciaGasta;
 
