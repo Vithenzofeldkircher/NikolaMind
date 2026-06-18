@@ -3,18 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     [Header("Painel de Configurações")]
+    
     public GameObject painelConfiguraçoes;
     
-    //Ir para a ouitra cena
-    public void AbrirCena(string nomeDaaCena)
+  
+    
+    public void AbrirCena(string nomeDaaCena)  //Ir para a ouitra cena
     {
         SceneManager.LoadScene(nomeDaaCena);
     }
 
-    //Abrir painel
-    public void AbrirConfiguracoes()
+    public void AbrirConfiguracoes() //Abrir painel
     {
         painelConfiguraçoes.SetActive(true);
     }
@@ -23,8 +24,8 @@ public class MenuController : MonoBehaviour
         painelConfiguraçoes.SetActive(false);
     }
 
-    //Sair do jogo
-    public void SairDoJogo()
+    
+    public void SairDoJogo() //Sair do jogo
     {
         Application.Quit();
 

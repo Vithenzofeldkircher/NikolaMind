@@ -1913,7 +1913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.91064584, y: 0.03618261}
   m_AnchorMax: {x: 0.9744792, y: 0.14552018}
-  m_AnchoredPosition: {x: -1, y: 1.1370239}
+  m_AnchoredPosition: {x: -1, y: 1.1369629}
   m_SizeDelta: {x: -2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1518389636
@@ -2156,7 +2156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cf10bbfe8bd8c4587d0dc7041594e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffecOfButton
-  targetScale: {x: 2.5, y: 2.5, z: 2.5}
+  targetScale: {x: 1.1, y: 1.1, z: 1.1}
 --- !u!1 &1688367257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,7 +2476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -230.66002, y: 77.99}
+  m_AnchoredPosition: {x: -230.66, y: 77.99}
   m_SizeDelta: {x: -461.33, y: -58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788376690
