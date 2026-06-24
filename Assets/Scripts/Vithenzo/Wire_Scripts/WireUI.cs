@@ -11,14 +11,16 @@ public class WireUI : MonoBehaviour
     [SerializeField] private WirePhysics wirePhysics;
     void Start()
     {
-        wirePhysics = GetComponent<WirePhysics>();
+        // CORREÇÃO SOLID/BUG: Se você arrastou pelo Inspector, o GetComponent substituía por Null se a UI estivesse em outro GameObject.
+        if (wirePhysics == null)
+        {
+            wirePhysics = GetComponent<WirePhysics>();
+        }
 
-        // Começa com o texto desativado por segurança
         if (textoMetros != null)
             textoMetros.gameObject.SetActive(false);
-    }
 
-    void Update()
+        void Update()
     {
         // 1. Verificações de segurança
         if (textoMetros == null || wirePhysics == null || WireManager.Instance == null) return;

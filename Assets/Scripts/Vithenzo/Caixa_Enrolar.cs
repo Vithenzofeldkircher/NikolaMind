@@ -1,40 +1,48 @@
 using UnityEngine;
 
-public class Caixa_Enrolar : MonoBehaviour
+[RequireComponent(typeof(SpriteRenderer))]
+public class Caixa_Enrolar : MonoBehaviour, IInteragivelFio
 {
-    [Header("Configurações do sprite")]
-    [SerializeField] private Sprite sprite_Normal;
-    [SerializeField] private Sprite sprite_Mudado;
+    [Header("Configurações de Sprite")]
+    [SerializeField] private Sprite spriteNormal;
+    [SerializeField] private Sprite spriteMudado;
 
-    private SpriteRenderer SP;
-    private bool ja_tem_fio = false;
+    private SpriteRenderer spriteRenderer;
+    private bool jaTemFio = false;
 
     void Awake()
     {
-        SP = GetComponent<SpriteRenderer>();
-        if (sprite_Normal != null && SP != null)
-            SP.sprite = sprite_Normal;
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
+        // Garante que a caixa comece com o sprite padrão
+        if (spriteNormal != null && spriteRenderer != null)
+            spriteRenderer.sprite = spriteNormal;
     }
 
-    public void Enrolar_Fio()
+    // SOLID (LSP/DIP): Implementação do contrato da interface quando o fio toca a caixa
+    public void AoTocarFio()
     {
-        if(ja_tem_fio ) return;
+        if (jaTemFio) return;
 
-        ja_tem_fio = true;
-        if (sprite_Mudado != null) SP.sprite = sprite_Mudado;
-        print("Fio enrolado na caixa {gameObject.name}");
+        jaTemFio = true;
 
+        if (spriteMudado != null && spriteRenderer != null)
+            spriteRenderer.sprite = spriteMudado;
+
+        // Correção do Bug: Adicionado o '$' para a interpolação de string funcionar
+        Debug.Log($"Fio enrolado na caixa: {gameObject.name}");
     }
 
-    public void DesenrolarFio()
+    // SOLID (LSP/DIP): Implementação do contrato da interface quando o fio se afasta
+    public void AoSoltarFio()
     {
-        if (!ja_tem_fio) return;
+        if (!jaTemFio) return;
 
-        ja_tem_fio = false;
-        if (sprite_Normal != null) SP.sprite = sprite_Normal;
+        jaTemFio = false;
+
+        if (spriteNormal != null && spriteRenderer != null)
+            spriteRenderer.sprite = spriteNormal;
+
         Debug.Log($"Fio desenrolado da caixa: {gameObject.name}");
     }
 }
-
-
