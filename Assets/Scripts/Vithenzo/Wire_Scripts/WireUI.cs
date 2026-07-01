@@ -6,46 +6,64 @@ public class WireUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoMetros;
 
     [Header("Referências do Sistema")]
-    // Transformado em SerializeField para você arrastar o objeto do Player/Fio no Inspector,
-    // mitigando o bug do GetComponent retornar null caso a UI esteja no Canvas.
-    [SerializeField] private WirePhysics wirePhysics;
-    void Start()
+    [SerializeField, Tooltip("Arraste a instância de WirePhysics (pode estar em outro GameObject).")]
+    private WirePhysics wirePhysics;
+
+    // Cache para evitar escrever o mesmo texto repetidas vezes
+    private string _ultimoTexto = string.Empty;
+
+    private void OnValidate()
     {
-        // CORREÇÃO SOLID/BUG: Se você arrastou pelo Inspector, o GetComponent substituía por Null se a UI estivesse em outro GameObject.
+        // Facilita configuração no Inspector durante edição
         if (wirePhysics == null)
-        {
             wirePhysics = GetComponent<WirePhysics>();
-        }
+
+        if (textoMetros == null)
+            textoMetros = GetComponentInChildren<TextMeshProUGUI>(true);
+    }
+
+    private void Start()
+    {
+        // Tentativas seguras de resolução em tempo de execução
+        if (wirePhysics == null)
+            wirePhysics = GetComponent<WirePhysics>() ?? GetComponent<WirePhysics>();
 
         if (textoMetros != null)
             textoMetros.gameObject.SetActive(false);
+    }
 
-        void Update()
+    private void Update()
     {
-        // 1. Verificações de segurança
-        if (textoMetros == null || wirePhysics == null || WireManager.Instance == null) return;
+        // Segurança: aborta cedo se faltar referência
+        if (textoMetros == null || wirePhysics == null || WireManager.Instance == null)
+            return;
 
-        // 2. Lógica de Ativação: O texto só aparece se estiver carregando o fio
-        // E desaparece se a missão for concluída ou se o fio for largado
+        // Mostrar só enquanto o jogador estiver carregando fio e a missão não estiver concluída
         bool deveMostrarTexto = WireManager.Instance.carregandoFio && !WireManager.Instance.missaoConcluida;
 
-        // Ativa ou desativa o objeto de texto no Canvas
+        // Ativa/desativa o GameObject do texto apenas quando necessário
         if (textoMetros.gameObject.activeSelf != deveMostrarTexto)
-        {
             textoMetros.gameObject.SetActive(deveMostrarTexto);
+
+        if (!deveMostrarTexto)
+        {
+            // limpa cache para forçar atualização quando reativar
+            _ultimoTexto = string.Empty;
+            return;
         }
 
-        // 3. Atualização do conteúdo (Só roda se o texto estiver visível)
-        if (deveMostrarTexto)
+        // Obtém distância atual do fio a partir da instância de física
+        float distanciaTotal = wirePhysics.CalcularDistanciaTotal();
+
+        // Calcula o quanto resta, garantindo não-negativo
+        float sobra = Mathf.Max(0f, WireManager.Instance.fioMaximo - distanciaTotal);
+
+        // Formata texto (ex: "8.5m") e só atualiza quando diferente do atual (reduz GC e trabalho do TMP)
+        string novoTexto = $"{sobra:F1}m";
+        if (!novoTexto.Equals(_ultimoTexto))
         {
-            // CORREÇÃO DO BUG: Chamando o método a partir da INSTÂNCIA (wirePhysics) e não da classe.
-            float dist = wirePhysics.CalcularDistanciaTotal();
-
-            // Calcula quanta fiação resta
-            float sobra = Mathf.Max(0, WireManager.Instance.fioMaximo - dist);
-
-            // Exibe apenas a quantidade (Ex: "8.5m")
-            textoMetros.text = $"{sobra:F1}m";
+            textoMetros.text = novoTexto;
+            _ultimoTexto = novoTexto;
         }
     }
 }

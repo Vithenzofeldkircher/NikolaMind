@@ -1961,8 +1961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &488876293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,8 +2290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &547847542
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,8 +4132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &914245692
 GameObject:
   m_ObjectHideFlags: 0
@@ -4629,8 +4629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &980326003
 GameObject:
   m_ObjectHideFlags: 0
@@ -5603,8 +5603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1194957999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5754,7 +5754,6 @@ GameObject:
   - component: {fileID: 1205355573}
   - component: {fileID: 1205355574}
   - component: {fileID: 1205355575}
-  - component: {fileID: 1205355576}
   m_Layer: 9
   m_Name: f (21)
   m_TagString: Untagged
@@ -5893,22 +5892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
---- !u!114 &1205355576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205355570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1206321816
 GameObject:
   m_ObjectHideFlags: 0
@@ -6683,8 +6668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1404839364
 GameObject:
   m_ObjectHideFlags: 0
@@ -6976,8 +6961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1543955191
 GameObject:
   m_ObjectHideFlags: 0
@@ -7506,8 +7491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1585061883
 GameObject:
   m_ObjectHideFlags: 0
@@ -8069,8 +8054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1706221102
 GameObject:
   m_ObjectHideFlags: 0
@@ -9158,8 +9143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1915619243
 GameObject:
   m_ObjectHideFlags: 0
@@ -9387,8 +9372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de821dacafe21f8449457abc18b0fd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Caixa_Enrolar
-  spriteNormal: {fileID: 0}
-  spriteMudado: {fileID: 0}
+  spriteNormal: {fileID: 5430161613091852152, guid: 19fbdebdf0672d34d9e104a4bacd172a, type: 3}
+  spriteMudado: {fileID: -5193555247481789810, guid: 5cb04221b3477be4781b246e8122e733, type: 3}
 --- !u!1 &1935622761
 GameObject:
   m_ObjectHideFlags: 0
