@@ -539,7 +539,7 @@ RectTransform:
   m_Father: {fileID: 59937077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -908,7 +908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &671072064
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1148,6 +1148,7 @@ GameObject:
   - component: {fileID: 1006588249}
   - component: {fileID: 1006588252}
   - component: {fileID: 1006588253}
+  - component: {fileID: 1006588254}
   m_Layer: 5
   m_Name: Iniciar
   m_TagString: Untagged
@@ -1310,6 +1311,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffecOfButton
   targetScale: {x: 1.1, y: 1.1, z: 1.1}
+--- !u!114 &1006588254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006588247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4215b30d0084f4f4cb9ffc011788920d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuRotator
+  angle: 3
+  speed: 0.7
 --- !u!1 &1135396939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1467,7 @@ GameObject:
   - component: {fileID: 1313553044}
   - component: {fileID: 1313553043}
   - component: {fileID: 1313553046}
+  - component: {fileID: 1313553047}
   m_Layer: 5
   m_Name: "Configura\xE7\xF5es"
   m_TagString: Untagged
@@ -1586,6 +1602,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffecOfButton
   targetScale: {x: 1.1, y: 1.1, z: 1.1}
+--- !u!114 &1313553047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313553041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4215b30d0084f4f4cb9ffc011788920d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuRotator
+  angle: 3
+  speed: 0.7
 --- !u!1 &1339714387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,8 +1865,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 855330511}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2023,6 +2053,7 @@ GameObject:
   - component: {fileID: 1673984821}
   - component: {fileID: 1673984820}
   - component: {fileID: 1673984823}
+  - component: {fileID: 1673984824}
   m_Layer: 5
   m_Name: Sair
   m_TagString: Untagged
@@ -2157,6 +2188,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffecOfButton
   targetScale: {x: 1.1, y: 1.1, z: 1.1}
+--- !u!114 &1673984824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673984818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4215b30d0084f4f4cb9ffc011788920d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuRotator
+  angle: 3
+  speed: 0.7
 --- !u!1 &1688367257
 GameObject:
   m_ObjectHideFlags: 0
