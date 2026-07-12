@@ -8,10 +8,12 @@ public class Caixa_Enrolar : MonoBehaviour, IInteragivelFio
     [SerializeField] private Sprite spriteMudado;
 
     private SpriteRenderer spriteRenderer;
-    private bool jaTemFio = false;
 
-    // Implementação da propriedade da Interface (DIP / OCP)
-    public bool EstaComFio => jaTemFio;
+    // Trocamos o bool por um contador de pontos de contato
+    private int pontosAncorados = 0;
+
+    // A propriedade continua existindo para o Mission_Pass validar, mas agora checa se o contador é maior que 0
+    public bool EstaComFio => pontosAncorados > 0;
 
     void Awake()
     {
@@ -23,23 +25,34 @@ public class Caixa_Enrolar : MonoBehaviour, IInteragivelFio
 
     public void AoTocarFio()
     {
-        if (jaTemFio) return;
-        jaTemFio = true;
+        // Aumenta o número de dobras do fio presas nesta caixa
+        pontosAncorados++;
 
-        if (spriteMudado != null && spriteRenderer != null)
-            spriteRenderer.sprite = spriteMudado;
+        // Só troca o sprite se for o PRIMEIRO ponto a encostar na caixa
+        if (pontosAncorados == 1)
+        {
+            if (spriteMudado != null && spriteRenderer != null)
+                spriteRenderer.sprite = spriteMudado;
 
-        Debug.Log($"Fio enrolado na caixa: {gameObject.name}");
+            Debug.Log($"[Caixa] Fio começou a enrolar em: {gameObject.name}");
+        }
     }
 
     public void AoSoltarFio()
     {
-        if (!jaTemFio) return;
-        jaTemFio = false;
+        // Prevenção para não deixar o contador ficar negativo por acidente
+        if (pontosAncorados > 0)
+        {
+            pontosAncorados--;
+        }
 
-        if (spriteNormal != null && spriteRenderer != null)
-            spriteRenderer.sprite = spriteNormal;
+        // Só reverte o sprite se o ÚLTIMO ponto do fio se soltar da caixa
+        if (pontosAncorados == 0)
+        {
+            if (spriteNormal != null && spriteRenderer != null)
+                spriteRenderer.sprite = spriteNormal;
 
-        Debug.Log($"Fio desenrolado da caixa: {gameObject.name}");
+            Debug.Log($"[Caixa] Fio se soltou COMPLETAMENTE de: {gameObject.name}");
+        }
     }
 }

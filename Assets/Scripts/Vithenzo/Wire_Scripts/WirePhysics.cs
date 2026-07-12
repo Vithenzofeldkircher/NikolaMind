@@ -5,7 +5,7 @@ public class WirePhysics : MonoBehaviour
 {
     [Header("Configurações do Fio")]
     public LayerMask layerColisao;
-    public float distanciaDaQuina = 0.15f; // Aumentado levemente para garantir folga em BoxCollider2D
+    public float distanciaDaQuina = 0.15f;
 
     [Header("Referências")]
     [SerializeField] private WireRenderer visualizadorFio;
@@ -33,12 +33,16 @@ public class WirePhysics : MonoBehaviour
         Vector3 ultimoPontoFixo = pontosDoFio[pontosDoFio.Count - 2];
         Vector3 posAtual = transform.position;
 
-        // Executa o Linecast para detectar colisão com o cenário
-        RaycastHit2D hit = Physics2D.Linecast(ultimoPontoFixo, posAtual, layerColisao);
+        // 1. SOLUÇÃO: Micro-avanço na origem do raio.
+        // Evita que o raio raspe ou colida exatamente na quina de onde ele está saindo.
+        Vector3 direcaoRaycast = (posAtual - ultimoPontoFixo).normalized;
+        Vector3 origemRaio = ultimoPontoFixo + (direcaoRaycast * 0.05f);
+
+        // Dispara o raio a partir da origem levemente avançada
+        RaycastHit2D hit = Physics2D.Linecast(origemRaio, posAtual, layerColisao);
 
         if (hit.collider != null)
         {
-            // Inversão de Dependência (SOLID)
             if (hit.collider.TryGetComponent(out IInteragivelFio interagivel))
             {
                 interagivel.AoTocarFio();
@@ -47,23 +51,21 @@ public class WirePhysics : MonoBehaviour
 
             Vector3 pontoDeCurvatura;
 
-            // Se for um BoxCollider2D, calculamos a quina matemática perfeita para não atravessar
             if (hit.collider is BoxCollider2D boxCollider)
             {
-                pontoDeCurvatura = CalcularQuinaBoxCollider(boxCollider, hit.point);
+                // 2. SOLUÇÃO: Passamos o 'ultimoPontoFixo' para a função saber qual quina ignorar
+                pontoDeCurvatura = CalcularQuinaBoxCollider(boxCollider, hit.point, ultimoPontoFixo);
             }
             else
             {
-                // Fallback para outros tipos de colisores (como Circle ou Polygon)
                 Vector3 pontoBordaExata = hit.collider.ClosestPoint(hit.point);
                 Vector3 direcaoParaFora = (pontoBordaExata - hit.collider.bounds.center).normalized;
                 pontoDeCurvatura = pontoBordaExata + (direcaoParaFora * distanciaDaQuina);
             }
 
-            // Evita redundância de pontos colados
+            // Dupla garantia para não encavalar pontos
             if (Vector3.Distance(pontoDeCurvatura, ultimoPontoFixo) > 0.05f)
             {
-                // Insere a nova quina perfeitamente antes da posição do jogador
                 pontosDoFio.Insert(pontosDoFio.Count - 1, pontoDeCurvatura);
             }
         }
@@ -76,7 +78,6 @@ public class WirePhysics : MonoBehaviour
             Vector3 pontoAntepenultimo = pontosDoFio[pontosDoFio.Count - 3];
             Vector3 posAtual = transform.position;
 
-            // Faz uma varredura para ver se o caminho até o antepenúltimo ponto limpou
             RaycastHit2D hit = Physics2D.Linecast(pontoAntepenultimo, posAtual, layerColisao);
 
             if (hit.collider == null)
@@ -87,50 +88,59 @@ public class WirePhysics : MonoBehaviour
                     ultimoObjetoAtivado = null;
                 }
 
-                // Remove a quina, desenroscando o fio
                 pontosDoFio.RemoveAt(pontosDoFio.Count - 2);
             }
         }
     }
 
     /// <summary>
-    /// SRP: Método focado unicamente em extrair a quina geométrica correta de um BoxCollider2D
+    /// Agora este método recebe o "ultimoPontoFixo" para garantir que o fio avance para a PRÓXIMA quina
+    /// em vez de travar na quina atual e atravessar a caixa.
     /// </summary>
-    private Vector3 CalcularQuinaBoxCollider(BoxCollider2D box, Vector2 pontoImpacto)
+    private Vector3 CalcularQuinaBoxCollider(BoxCollider2D box, Vector2 pontoImpacto, Vector3 ultimoPontoFixo)
     {
         Bounds bounds = box.bounds;
 
-        // Lista as 4 quinas mundiais do BoxCollider2D
         Vector3[] quinas = new Vector3[]
         {
-            new Vector3(bounds.min.x, bounds.max.y, 0), // Superior Esquerda
-            new Vector3(bounds.max.x, bounds.max.y, 0), // Superior Direita
-            new Vector3(bounds.min.x, bounds.min.y, 0), // Inferior Esquerda
-            new Vector3(bounds.max.x, bounds.min.y, 0)  // Inferior Direita
+            new Vector3(bounds.min.x, bounds.max.y, 0),
+            new Vector3(bounds.max.x, bounds.max.y, 0),
+            new Vector3(bounds.min.x, bounds.min.y, 0),
+            new Vector3(bounds.max.x, bounds.min.y, 0)
         };
 
-        // Encontra qual das 4 quinas está mais próxima do ponto real onde o fio encostou
-        Vector3 quinaMaisProxima = quinas[0];
-        float menorDistancia = Vector2.Distance(pontoImpacto, quinaMaisProxima);
+        Vector3 melhorQuina = Vector3.zero;
+        float menorDistancia = float.MaxValue;
 
-        for (int i = 1; i < quinas.Length; i++)
+        for (int i = 0; i < quinas.Length; i++)
         {
+            Vector3 direcaoOffset = (quinas[i] - bounds.center).normalized;
+            Vector3 quinaCalculada = quinas[i] + (direcaoOffset * distanciaDaQuina);
+
+            // A MÁGICA ACONTECE AQUI:
+            // Se a quina calculada for basicamente o mesmo lugar onde o fio já está ancorado, ignora!
+            // Isso força o algoritmo a contornar a caixa buscando a próxima borda, evitando atravessar.
+            if (Vector3.Distance(quinaCalculada, ultimoPontoFixo) < 0.1f)
+                continue;
+
             float dist = Vector2.Distance(pontoImpacto, quinas[i]);
             if (dist < menorDistancia)
             {
                 menorDistancia = dist;
-                quinaMaisProxima = quinas[i];
+                melhorQuina = quinaCalculada;
             }
         }
 
-        // Calcula o vetor de deslocamento para fora a partir do centro do collider
-        Vector3 direcaoOffset = (quinaMaisProxima - bounds.center).normalized;
+        // Fallback de segurança extremo: se todas forem ignoradas, retorna a primeira calculada
+        if (menorDistancia == float.MaxValue)
+        {
+            Vector3 direcaoOffset = (quinas[0] - bounds.center).normalized;
+            return quinas[0] + (direcaoOffset * distanciaDaQuina);
+        }
 
-        // Retorna a quina com a folga necessária para o LineRenderer não clipar na parede
-        return quinaMaisProxima + (direcaoOffset * distanciaDaQuina);
+        return melhorQuina;
     }
 
-    // --- Métodos Auxiliares Mantidos ---
     public void InicializarFio(Vector3 posInicial)
     {
         pontosDoFio.Clear();
