@@ -9,9 +9,8 @@ public class ElectricalBox : MonoBehaviour, IInteractable
     public float metrosIniciais = 10f;
     public bool jaUsada = false;
 
-    public void Active() // Este método é chamado pelo seu sistema de Interação
+    public void Active()
     {
-
         if (Pickup_Manager.Instance != null && Pickup_Manager.Instance.estaCarregandoItem)
         {
             Debug.Log("Mãos ocupadas com um item!");
@@ -21,7 +20,6 @@ public class ElectricalBox : MonoBehaviour, IInteractable
         WireManager playerWire = WireManager.Instance;
         if (playerWire == null) return;
 
-        // Se a missão já foi concluída, ninguém mais interage
         if (playerWire.missaoConcluida)
         {
             Debug.Log("O sistema já está energizado.");
@@ -32,24 +30,32 @@ public class ElectricalBox : MonoBehaviour, IInteractable
         {
             if (!playerWire.carregandoFio)
             {
-                // Inicia a conexão passando a metragem e a posição desta caixa
                 playerWire.IniciarConexao(metrosIniciais, transform.position);
                 Debug.Log("Fio retirado da origem.");
             }
         }
         else if (tipo == TipoCaixa.Destino && playerWire.carregandoFio)
         {
-            // ACESSO AO RENDERER: Precisamos calcular quanto fio sobra
-            WirePhysics renderer = playerWire.GetComponent<WirePhysics>();
-            float distanciaGasta = renderer.CalcularDistanciaTotal();
+            WirePhysics physics = playerWire.GetComponent<WirePhysics>();
+            float distanciaGasta = physics.CalcularDistanciaTotal();
             float fioRestante = playerWire.fioMaximo - distanciaGasta;
 
-            // Se o fio restante for maior que zero (ou uma margem pequena de erro)
             if (fioRestante >= 0)
             {
-                playerWire.FinalizarConexao(transform.position);
-                jaUsada = true;
-                Debug.Log("Conexão finalizada com sucesso!");
+                // Inversão de Dependência & OCP: Pergunta ao Mission_Pass se o cenário está pronto
+                if (Mission_Pass.Instance != null && Mission_Pass.Instance.ValidarRequisitosDeVitoria())
+                {
+                    playerWire.FinalizarConexao(transform.position);
+                    jaUsada = true;
+                    Debug.Log("Conexão finalizada com sucesso!");
+
+                    // Dispara a mudança de cena
+                    Mission_Pass.Instance.AtivarVitoria();
+                }
+                else
+                {
+                    Debug.Log("Você alcançou o destino, mas o fio precisa contornar TODAS as caixas obrigatórias antes!");
+                }
             }
             else
             {
