@@ -680,8 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a668b04c207bea4381be9cfc319585d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MostrarE
-  visualProvider: {fileID: 0}
-  startVisible: 0
+  visualE: {fileID: 0}
 --- !u!114 &78868993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,7 +818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &106916977
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1656,8 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a668b04c207bea4381be9cfc319585d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MostrarE
-  visualProvider: {fileID: 0}
-  startVisible: 0
+  visualE: {fileID: 2096238279}
 --- !u!61 &416037156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2846,8 +2844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a668b04c207bea4381be9cfc319585d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MostrarE
-  visualProvider: {fileID: 106916978}
-  startVisible: 0
+  visualE: {fileID: 106916976}
 --- !u!1 &578397414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3986,7 +3983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &827229890
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7135,8 +7132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a668b04c207bea4381be9cfc319585d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MostrarE
-  visualProvider: {fileID: 1543955193}
-  startVisible: 0
+  visualE: {fileID: 0}
 --- !u!114 &1453915472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9843,7 +9839,7 @@ Transform:
   m_GameObject: {fileID: 1935622761}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.13, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22842,8 +22838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a668b04c207bea4381be9cfc319585d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MostrarE
-  visualProvider: {fileID: 8099662070686967254}
-  startVisible: 0
+  visualE: {fileID: 1140051635827210959}
 --- !u!4 &5205064534873226372
 Transform:
   m_ObjectHideFlags: 0

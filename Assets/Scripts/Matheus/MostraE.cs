@@ -2,32 +2,40 @@ using UnityEngine;
 
 public class MostrarE : MonoBehaviour
 {
-    // Atribua aqui um Component que implemente IVisualE (ex: VisualEGameObject)
-    [SerializeField] private MonoBehaviour visualProvider;
-    [SerializeField] private bool startVisible = false;
+    // Arraste aqui apenas o objeto do Texto, NÃO o Canvas inteiro!
+    public GameObject visualE;
 
-    private IVisualE _visual;
-
-    private void Awake()
+    void Start()
     {
-        // Injeção por referência: aceita um MonoBehaviour que implemente IVisualE
-        _visual = visualProvider as IVisualE ?? GetComponent<IVisualE>();
+        // Desativa apenas o visual no início
+        if (visualE != null) visualE.SetActive(false);
+    }
 
-        if (_visual == null)
+    // Detecta quando o Player entra na área do Trigger
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
-            Debug.LogWarning($"{name}: nenhum IVisualE encontrado. A visibilidade não será controlada.");
+            Show();
         }
     }
 
-    private void Start()
+    // Detecta quando o Player sai da área do Trigger
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (_visual == null) return;
-
-        if (startVisible) _visual.Show();
-        else _visual.Hide();
+        if (other.CompareTag("Player"))
+        {
+            Hide();
+        }
     }
 
-    public void Show() => _visual?.Show();
+    public void Show()
+    {
+        if (visualE != null) visualE.SetActive(true);
+    }
 
-    public void Hide() => _visual?.Hide();
+    public void Hide()
+    {
+        if (visualE != null) visualE.SetActive(false);
+    }
 }
