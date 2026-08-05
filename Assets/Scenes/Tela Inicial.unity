@@ -178,8 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nikola Mind
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e67b64d261881a445bb99ffcc5bda678, type: 2}
-  m_sharedMaterial: {fileID: 2257301015317575583, guid: e67b64d261881a445bb99ffcc5bda678, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -943,7 +943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuTransition
   animator: {fileID: 1070607638}
-  nomeDaCena: Mini_Game_1
+  nomeDaCena: SampleScene
   tempoDaAnimacao: 0.8
 --- !u!4 &523401987
 Transform:
