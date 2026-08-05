@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4c5801f9eb23e73489ade43b4f45ef37
+guid: b5c9acf6a6a46e54fa39420979fb17e8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8377174918536175729
-    second: Tox__0
+      213: 8708928317580393208
+    second: Design sem nome (2)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tox__0
+      name: Design sem nome (2)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 775
-        height: 1211
+        x: 505
+        y: 2
+        width: 732
+        height: 1048
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f8fd657bbcb4ebb80800000000000000
-      internalID: -8377174918536175729
+      spriteID: 8fa38b7b9245cd870800000000000000
+      internalID: 8708928317580393208
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tox__0: -8377174918536175729
+      Design sem nome (2)_0: 8708928317580393208
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
