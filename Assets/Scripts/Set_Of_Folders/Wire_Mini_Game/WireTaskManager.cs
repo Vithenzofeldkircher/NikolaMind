@@ -24,7 +24,7 @@ public class WireTaskManager : MonoBehaviour
 
     private int fiosConectados = 0;
 
-    void Start()
+    void OnEnable()
     {
         GerarNovaTarefa();
     }

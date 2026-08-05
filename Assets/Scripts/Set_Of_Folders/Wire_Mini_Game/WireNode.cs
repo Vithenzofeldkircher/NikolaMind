@@ -20,15 +20,15 @@ public class WireNode : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         corAtual = dadosCor;
         gerador = manager;
         ehNoInicial = inicial;
+
+        // ESSENCIAL PARA O PANEL: Reseta o estado ao abrir novamente
         conectado = false;
 
-        // Pinta o quadrado com a cor sorteada
         if (imagemTerminal != null)
         {
             imagemTerminal.color = dadosCor.cor;
         }
 
-        // Configura a linha visual se existir
         if (linhaFio != null)
         {
             linhaFio.startColor = dadosCor.cor;
@@ -37,6 +37,8 @@ public class WireNode : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
             posicaoInicialLinha = transform.position;
             linhaFio.SetPosition(0, posicaoInicialLinha);
             linhaFio.SetPosition(1, posicaoInicialLinha);
+
+            // ESSENCIAL: Esconde a linha da tentativa anterior
             linhaFio.enabled = false;
         }
     }

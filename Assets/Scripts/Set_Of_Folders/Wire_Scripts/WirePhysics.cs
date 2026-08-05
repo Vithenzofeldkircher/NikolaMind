@@ -11,7 +11,10 @@ public class WirePhysics : MonoBehaviour
     [SerializeField] private WireRenderer visualizadorFio;
 
     public List<Vector3> pontosDoFio = new List<Vector3>();
-    private IInteragivelFio ultimoObjetoAtivado;
+
+    // SOLID (SRP/DIP): Histórico de interações vinculado a cada quina gerada no fio.
+    // Substitui o "ultimoObjetoAtivado" para suportar múltiplas voltas na mesma caixa.
+    private List<IInteragivelFio> historicoInteracoes = new List<IInteragivelFio>();
 
     void Update()
     {
@@ -33,27 +36,25 @@ public class WirePhysics : MonoBehaviour
         Vector3 ultimoPontoFixo = pontosDoFio[pontosDoFio.Count - 2];
         Vector3 posAtual = transform.position;
 
-        // 1. SOLUÇÃO: Micro-avanço na origem do raio.
-        // Evita que o raio raspe ou colida exatamente na quina de onde ele está saindo.
         Vector3 direcaoRaycast = (posAtual - ultimoPontoFixo).normalized;
         Vector3 origemRaio = ultimoPontoFixo + (direcaoRaycast * 0.05f);
 
-        // Dispara o raio a partir da origem levemente avançada
         RaycastHit2D hit = Physics2D.Linecast(origemRaio, posAtual, layerColisao);
 
         if (hit.collider != null)
         {
+            IInteragivelFio interagivelEncontrado = null;
+
             if (hit.collider.TryGetComponent(out IInteragivelFio interagivel))
             {
                 interagivel.AoTocarFio();
-                ultimoObjetoAtivado = interagivel;
+                interagivelEncontrado = interagivel;
             }
 
             Vector3 pontoDeCurvatura;
 
             if (hit.collider is BoxCollider2D boxCollider)
             {
-                // 2. SOLUÇÃO: Passamos o 'ultimoPontoFixo' para a função saber qual quina ignorar
                 pontoDeCurvatura = CalcularQuinaBoxCollider(boxCollider, hit.point, ultimoPontoFixo);
             }
             else
@@ -63,10 +64,13 @@ public class WirePhysics : MonoBehaviour
                 pontoDeCurvatura = pontoBordaExata + (direcaoParaFora * distanciaDaQuina);
             }
 
-            // Dupla garantia para não encavalar pontos
+            // Garante que não encavale pontos e registra o histórico da quina
             if (Vector3.Distance(pontoDeCurvatura, ultimoPontoFixo) > 0.05f)
             {
                 pontosDoFio.Insert(pontosDoFio.Count - 1, pontoDeCurvatura);
+
+                // CORREÇÃO: Salvamos quem foi o objeto tocado NESSA quina específica
+                historicoInteracoes.Add(interagivelEncontrado);
             }
         }
     }
@@ -82,10 +86,14 @@ public class WirePhysics : MonoBehaviour
 
             if (hit.collider == null)
             {
-                if (ultimoObjetoAtivado != null)
+                // CORREÇÃO: Recuperamos o objeto que estava atrelado à última quina criada
+                int ultimoIndice = historicoInteracoes.Count - 1;
+                if (ultimoIndice >= 0)
                 {
-                    ultimoObjetoAtivado.AoSoltarFio();
-                    ultimoObjetoAtivado = null;
+                    IInteragivelFio objetoAncorado = historicoInteracoes[ultimoIndice];
+                    objetoAncorado?.AoSoltarFio(); // Avisa a caixa (se houver uma)
+
+                    historicoInteracoes.RemoveAt(ultimoIndice);
                 }
 
                 pontosDoFio.RemoveAt(pontosDoFio.Count - 2);
@@ -93,10 +101,6 @@ public class WirePhysics : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Agora este método recebe o "ultimoPontoFixo" para garantir que o fio avance para a PRÓXIMA quina
-    /// em vez de travar na quina atual e atravessar a caixa.
-    /// </summary>
     private Vector3 CalcularQuinaBoxCollider(BoxCollider2D box, Vector2 pontoImpacto, Vector3 ultimoPontoFixo)
     {
         Bounds bounds = box.bounds;
@@ -117,9 +121,6 @@ public class WirePhysics : MonoBehaviour
             Vector3 direcaoOffset = (quinas[i] - bounds.center).normalized;
             Vector3 quinaCalculada = quinas[i] + (direcaoOffset * distanciaDaQuina);
 
-            // A MÁGICA ACONTECE AQUI:
-            // Se a quina calculada for basicamente o mesmo lugar onde o fio já está ancorado, ignora!
-            // Isso força o algoritmo a contornar a caixa buscando a próxima borda, evitando atravessar.
             if (Vector3.Distance(quinaCalculada, ultimoPontoFixo) < 0.1f)
                 continue;
 
@@ -131,7 +132,6 @@ public class WirePhysics : MonoBehaviour
             }
         }
 
-        // Fallback de segurança extremo: se todas forem ignoradas, retorna a primeira calculada
         if (menorDistancia == float.MaxValue)
         {
             Vector3 direcaoOffset = (quinas[0] - bounds.center).normalized;
@@ -144,6 +144,8 @@ public class WirePhysics : MonoBehaviour
     public void InicializarFio(Vector3 posInicial)
     {
         pontosDoFio.Clear();
+        historicoInteracoes.Clear(); // Limpa o histórico ao começar um novo fio
+
         pontosDoFio.Add(posInicial);
         pontosDoFio.Add(transform.position);
     }
