@@ -1561,6 +1561,7 @@ GameObject:
   - component: {fileID: 416037153}
   - component: {fileID: 416037156}
   - component: {fileID: 416037155}
+  - component: {fileID: 416037157}
   m_Layer: 7
   m_Name: Fusivel
   m_TagString: Untagged
@@ -1701,6 +1702,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 35.440624, y: 31.067135}
   m_EdgeRadius: 0
+--- !u!114 &416037157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416037152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1764c8f73c89144b8bb302e217d0cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameTrigger
+  nomeDaCenaMinigame: Mini_Game_2
 --- !u!1001 &433267138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22574,6 +22588,50 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1971664635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1971664637}
+  - component: {fileID: 1971664636}
+  m_Layer: 0
+  m_Name: Scene_Transition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1971664636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971664635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87f4bb9410fdd54a932258d664e2406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionManager
+--- !u!4 &1971664637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971664635}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 60.00101, y: 7.52739, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2040330737
 GameObject:
   m_ObjectHideFlags: 0
@@ -24346,3 +24404,4 @@ SceneRoots:
   - {fileID: 1812510000}
   - {fileID: 2374386301475805928}
   - {fileID: 416037154}
+  - {fileID: 1971664637}
