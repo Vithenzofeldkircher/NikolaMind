@@ -9,6 +9,8 @@ public class CreditScroll : MonoBehaviour
 
     private Vector2 posicaoInicial;
     private bool mover = false;
+    public RectTransform viewport;
+    public GameObject painelCreditos;
 
     void Start()
     {
@@ -16,12 +18,20 @@ public class CreditScroll : MonoBehaviour
     }
 
     void Update()
-    {
-        if (!mover)
-            return;
+{
+    if (!mover)
+        return;
 
-        texto.anchoredPosition += Vector2.up * velocidade * Time.deltaTime;
+    texto.anchoredPosition += Vector2.up * velocidade * Time.deltaTime;
+
+    // Verifica se o texto saiu completamente da tela
+    if (texto.anchoredPosition.y >
+        viewport.rect.height + texto.rect.height)
+    {
+        PararCreditos();
+        painelCreditos.SetActive(false);
     }
+}
 
     public void IniciarCreditos()
     {
