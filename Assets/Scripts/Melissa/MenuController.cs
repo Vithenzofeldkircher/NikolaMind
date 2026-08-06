@@ -3,34 +3,48 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    
     [Header("Painel de Configurações")]
-    
-    public GameObject painelConfiguraçoes;
-    
-  
-    
-    public void AbrirCena(string nomeDaaCena)  //Ir para a ouitra cena
+    public GameObject painelConfiguracoes;
+    public CreditScroll creditScroll;
+
+    [Header("Painel de Créditos")]
+    public GameObject painelCreditos;
+
+    public void AbrirCena(string nomeDaCena)
     {
-        SceneManager.LoadScene(nomeDaaCena);
+        SceneManager.LoadScene(nomeDaCena);
     }
 
-    public void AbrirConfiguracoes() //Abrir painel
+    // Configurações
+    public void AbrirConfiguracoes()
     {
-        painelConfiguraçoes.SetActive(true);
+        painelConfiguracoes.SetActive(true);
     }
+
     public void FecharConfiguracoes()
     {
-        painelConfiguraçoes.SetActive(false);
+        painelConfiguracoes.SetActive(false);
     }
 
-    
-    public void SairDoJogo() //Sair do jogo
+    // Créditos
+    public void AbrirCreditos()
+{
+    painelCreditos.SetActive(true);
+    creditScroll.IniciarCreditos();
+}
+
+public void FecharCreditos()
+{
+    creditScroll.PararCreditos();
+    painelCreditos.SetActive(false);
+}
+
+    public void SairDoJogo()
     {
         Application.Quit();
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+#endif
     }
 }
