@@ -1943,7 +1943,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireNode
-  imagemTerminal: {fileID: 375303947}
   rotacaoDeitado: {x: 0, y: 0, z: 0}
   rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1001 &397896415
@@ -4211,7 +4210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &779876488
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4292,19 +4291,31 @@ MonoBehaviour:
   - {fileID: 1962572301}
   - {fileID: 1033194955}
   - {fileID: 1238245204}
-  coresDisponiveis:
-  - nomeCor: azul matheus
-    cor: {r: 0, g: 0.34714934, b: 0.5377358, a: 0}
-  - nomeCor: rosa cabeca
-    cor: {r: 0.990566, g: 0.042052314, b: 0.7706552, a: 0}
-  - nomeCor: czxc
-    cor: {r: 0.054852284, g: 0.99215686, b: 0.043137245, a: 0}
-  - nomeCor: ada
-    cor: {r: 0.99215686, g: 0.14599572, b: 0.043137245, a: 0}
-  - nomeCor: asdr
-    cor: {r: 0.043137245, g: 0.4752488, b: 0.99215686, a: 0}
-  - nomeCor: awedas
-    cor: {r: 0.043137245, g: 0.99215686, b: 0.6021747, a: 0}
+  receitasDisponiveis:
+  - nomeResultado: Verde
+    corResultado: {r: 0.05281806, g: 1, b: 0, a: 1}
+    corSuperior:
+      nomeCor: Azul
+      cor: {r: 0, g: 0.13428664, b: 1, a: 1}
+    corInferior:
+      nomeCor: Amarelo
+      cor: {r: 0.9772253, g: 1, b: 0, a: 1}
+  - nomeResultado: Laranja
+    corResultado: {r: 1, g: 0.50319403, b: 0, a: 1}
+    corSuperior:
+      nomeCor: Vermelho
+      cor: {r: 1, g: 0, b: 0, a: 1}
+    corInferior:
+      nomeCor: Amarelo
+      cor: {r: 1, g: 0.989607, b: 0, a: 1}
+  - nomeResultado: Roxo
+    corResultado: {r: 1, g: 0, b: 0.90488815, a: 1}
+    corSuperior:
+      nomeCor: Vermelho
+      cor: {r: 1, g: 0, b: 0, a: 1}
+    corInferior:
+      nomeCor: Azul
+      cor: {r: 0, g: 0.23994851, b: 1, a: 1}
 --- !u!1 &827229889
 GameObject:
   m_ObjectHideFlags: 0
@@ -5744,7 +5755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireNode
-  imagemTerminal: {fileID: 1033194953}
   rotacaoDeitado: {x: 0, y: 0, z: 0}
   rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1122218419
@@ -6756,7 +6766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireNode
-  imagemTerminal: {fileID: 1238245202}
   rotacaoDeitado: {x: 0, y: 0, z: 0}
   rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1299656846
@@ -7029,7 +7038,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireNode
-  imagemTerminal: {fileID: 1349487863}
   rotacaoDeitado: {x: 0, y: 0, z: 0}
   rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1359965841
@@ -7658,7 +7666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireNode
-  imagemTerminal: {fileID: 1450187995}
   rotacaoDeitado: {x: 0, y: 0, z: 0}
   rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1453915467
@@ -24754,7 +24761,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireNode
-  imagemTerminal: {fileID: 1962572299}
   rotacaoDeitado: {x: 0, y: 0, z: 0}
   rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1971664635

@@ -4,29 +4,25 @@ using UnityEngine.EventSystems;
 
 public class WireNode : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Componentes Visuais")]
-    public Image imagemTerminal;
-
     [Header("Configuração de Rotação")]
-    [Tooltip("Rotação quando o fusível está deitado (horizontal)")]
+    [Tooltip("Rotação quando o fusível está deitado (0 graus)")]
     [SerializeField] private Vector3 rotacaoDeitado = Vector3.zero;
 
-    [Tooltip("Rotação quando o fusível é erguido ao ser clicado")]
+    [Tooltip("Rotação quando o fusível é erguido (90 graus)")]
     [SerializeField] private Vector3 rotacaoErguido = new Vector3(0, 0, 90f);
 
     public WireColorData corAtual { get; private set; }
     public bool ehNoInicial { get; private set; }
     public bool conectado { get; private set; }
 
+    private Image imagemTerminal;
+    private Button botao;
     private WireTaskManager gerador;
 
     private void Awake()
     {
-        // Pega automaticamente a imagem do PRÓPRIO objeto se não estiver definida
-        if (imagemTerminal == null)
-        {
-            imagemTerminal = GetComponent<Image>();
-        }
+        imagemTerminal = GetComponent<Image>();
+        botao = GetComponent<Button>();
     }
 
     public void ConfigurarNo(WireColorData dadosCor, WireTaskManager manager, bool inicial)
@@ -36,34 +32,41 @@ public class WireNode : MonoBehaviour, IPointerClickHandler
         ehNoInicial = inicial;
         conectado = false;
 
-        // Garante que a imagem é a deste próprio GameObject
-        imagemTerminal = GetComponent<Image>();
+        if (imagemTerminal == null) imagemTerminal = GetComponent<Image>();
+        if (botao == null) botao = GetComponent<Button>();
 
-        // Força o fusível a iniciar deitado
-        ResetarRotacao();
+        // Força a transparência (Alpha) para 1 (100% visível)
+        Color corFinal = dadosCor.cor;
+        corFinal.a = 1f;
 
-        // 1. Aplica a cor diretamente no componente Image
+        // 1. Aplica a cor diretamente na Image do próprio botão
         if (imagemTerminal != null)
         {
-            imagemTerminal.color = dadosCor.cor;
+            imagemTerminal.color = corFinal;
         }
 
-        // 2. Aplica a cor também nas transições do componente Button
-        Button btn = GetComponent<Button>();
-        if (btn != null)
+        // 2. Configura a transição do botão para usar a mesma cor
+        if (botao != null)
         {
-            ColorBlock colors = btn.colors;
-            colors.normalColor = dadosCor.cor;
-            colors.highlightedColor = dadosCor.cor;
-            colors.pressedColor = dadosCor.cor * 0.8f;
-            colors.selectedColor = dadosCor.cor;
-            btn.colors = colors;
+            botao.targetGraphic = imagemTerminal;
+            ColorBlock colors = botao.colors;
+            colors.normalColor = corFinal;
+            colors.highlightedColor = corFinal * 1.1f;
+            colors.pressedColor = corFinal * 0.8f;
+            colors.selectedColor = corFinal;
+            colors.colorMultiplier = 1f;
+            botao.colors = colors;
         }
+
+        // Inicia deitado (0 graus)
+        ResetarRotacao();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (conectado) return;
+
+        Debug.Log($"[WireNode] Clicou no botão: {gameObject.name} | É Inicial? {ehNoInicial} | Cor: {corAtual.nomeCor}");
 
         if (ehNoInicial)
         {
