@@ -1821,6 +1821,7 @@ GameObject:
   - component: {fileID: 375303948}
   - component: {fileID: 375303947}
   - component: {fileID: 375303946}
+  - component: {fileID: 375303950}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -1930,6 +1931,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375303944}
   m_CullTransparentMesh: 1
+--- !u!114 &375303950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375303944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WireNode
+  imagemTerminal: {fileID: 375303947}
+  rotacaoDeitado: {x: 0, y: 0, z: 0}
+  rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1001 &397896415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4188,6 +4204,7 @@ GameObject:
   - component: {fileID: 779876488}
   - component: {fileID: 779876490}
   - component: {fileID: 779876489}
+  - component: {fileID: 779876491}
   m_Layer: 5
   m_Name: Panel_Mini_Game
   m_TagString: Untagged
@@ -4254,6 +4271,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779876487}
   m_CullTransparentMesh: 1
+--- !u!114 &779876491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779876487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cff3e6fe83a374380809170d76dbb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WireTaskManager
+  textoOrdem: {fileID: 1647063207}
+  nosIniciais:
+  - {fileID: 1349487866}
+  - {fileID: 375303950}
+  - {fileID: 1450187998}
+  nosFinais:
+  - {fileID: 1962572301}
+  - {fileID: 1033194955}
+  - {fileID: 1238245204}
+  coresDisponiveis:
+  - nomeCor: azul matheus
+    cor: {r: 0, g: 0.34714934, b: 0.5377358, a: 0}
+  - nomeCor: rosa cabeca
+    cor: {r: 0.990566, g: 0.042052314, b: 0.7706552, a: 0}
+  - nomeCor: czxc
+    cor: {r: 0.054852284, g: 0.99215686, b: 0.043137245, a: 0}
+  - nomeCor: ada
+    cor: {r: 0.99215686, g: 0.14599572, b: 0.043137245, a: 0}
+  - nomeCor: asdr
+    cor: {r: 0.043137245, g: 0.4752488, b: 0.99215686, a: 0}
+  - nomeCor: awedas
+    cor: {r: 0.043137245, g: 0.99215686, b: 0.6021747, a: 0}
 --- !u!1 &827229889
 GameObject:
   m_ObjectHideFlags: 0
@@ -5571,8 +5622,9 @@ GameObject:
   - component: {fileID: 1033194954}
   - component: {fileID: 1033194953}
   - component: {fileID: 1033194952}
+  - component: {fileID: 1033194955}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: No final 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5680,6 +5732,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033194950}
   m_CullTransparentMesh: 1
+--- !u!114 &1033194955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033194950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WireNode
+  imagemTerminal: {fileID: 1033194953}
+  rotacaoDeitado: {x: 0, y: 0, z: 0}
+  rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1122218419
 GameObject:
   m_ObjectHideFlags: 0
@@ -6567,8 +6634,9 @@ GameObject:
   - component: {fileID: 1238245203}
   - component: {fileID: 1238245202}
   - component: {fileID: 1238245201}
+  - component: {fileID: 1238245204}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: no final 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6676,6 +6744,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238245199}
   m_CullTransparentMesh: 1
+--- !u!114 &1238245204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238245199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WireNode
+  imagemTerminal: {fileID: 1238245202}
+  rotacaoDeitado: {x: 0, y: 0, z: 0}
+  rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1299656846
 GameObject:
   m_ObjectHideFlags: 0
@@ -6824,6 +6907,7 @@ GameObject:
   - component: {fileID: 1349487864}
   - component: {fileID: 1349487863}
   - component: {fileID: 1349487862}
+  - component: {fileID: 1349487866}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -6933,6 +7017,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349487860}
   m_CullTransparentMesh: 1
+--- !u!114 &1349487866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349487860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WireNode
+  imagemTerminal: {fileID: 1349487863}
+  rotacaoDeitado: {x: 0, y: 0, z: 0}
+  rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1359965841
 GameObject:
   m_ObjectHideFlags: 0
@@ -7437,6 +7536,7 @@ GameObject:
   - component: {fileID: 1450187996}
   - component: {fileID: 1450187995}
   - component: {fileID: 1450187994}
+  - component: {fileID: 1450187998}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -7546,6 +7646,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450187992}
   m_CullTransparentMesh: 1
+--- !u!114 &1450187998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450187992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WireNode
+  imagemTerminal: {fileID: 1450187995}
+  rotacaoDeitado: {x: 0, y: 0, z: 0}
+  rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1453915467
 GameObject:
   m_ObjectHideFlags: 0
@@ -24517,8 +24632,9 @@ GameObject:
   - component: {fileID: 1962572300}
   - component: {fileID: 1962572299}
   - component: {fileID: 1962572298}
+  - component: {fileID: 1962572301}
   m_Layer: 5
-  m_Name: Button
+  m_Name: No final
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24626,6 +24742,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962572296}
   m_CullTransparentMesh: 1
+--- !u!114 &1962572301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962572296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6cef3b869053a046949b02b60b94d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WireNode
+  imagemTerminal: {fileID: 1962572299}
+  rotacaoDeitado: {x: 0, y: 0, z: 0}
+  rotacaoErguido: {x: 0, y: 0, z: 90}
 --- !u!1 &1971664635
 GameObject:
   m_ObjectHideFlags: 0

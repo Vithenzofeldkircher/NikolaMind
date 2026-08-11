@@ -12,6 +12,7 @@ public class MinigameTrigger : MonoBehaviour, IInteractable
         {
             // Ativa o Panel na tela
             minigamePanel.SetActive(true);
+            Time.timeScale = 0f; // Pausa o tempo do jogo, se necessário
 
             // Opcional: Desativa a movimentação ou controles do Player aqui, se necessário
         }

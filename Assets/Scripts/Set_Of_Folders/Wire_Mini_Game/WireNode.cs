@@ -2,119 +2,92 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class WireNode : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class WireNode : MonoBehaviour, IPointerClickHandler
 {
     [Header("Componentes Visuais")]
     public Image imagemTerminal;
-    public LineRenderer linhaFio; // Opcional: Para desenhar o fio visualmente
+
+    [Header("Configuração de Rotação")]
+    [Tooltip("Rotação quando o fusível está deitado (horizontal)")]
+    [SerializeField] private Vector3 rotacaoDeitado = Vector3.zero;
+
+    [Tooltip("Rotação quando o fusível é erguido ao ser clicado")]
+    [SerializeField] private Vector3 rotacaoErguido = new Vector3(0, 0, 90f);
 
     public WireColorData corAtual { get; private set; }
     public bool ehNoInicial { get; private set; }
     public bool conectado { get; private set; }
 
     private WireTaskManager gerador;
-    private Vector3 posicaoInicialLinha;
+
+    private void Awake()
+    {
+        // Pega automaticamente a imagem do PRÓPRIO objeto se não estiver definida
+        if (imagemTerminal == null)
+        {
+            imagemTerminal = GetComponent<Image>();
+        }
+    }
 
     public void ConfigurarNo(WireColorData dadosCor, WireTaskManager manager, bool inicial)
     {
         corAtual = dadosCor;
         gerador = manager;
         ehNoInicial = inicial;
-
-        // ESSENCIAL PARA O PANEL: Reseta o estado ao abrir novamente
         conectado = false;
 
+        // Garante que a imagem é a deste próprio GameObject
+        imagemTerminal = GetComponent<Image>();
+
+        // Força o fusível a iniciar deitado
+        ResetarRotacao();
+
+        // 1. Aplica a cor diretamente no componente Image
         if (imagemTerminal != null)
         {
             imagemTerminal.color = dadosCor.cor;
         }
 
-        if (linhaFio != null)
+        // 2. Aplica a cor também nas transições do componente Button
+        Button btn = GetComponent<Button>();
+        if (btn != null)
         {
-            linhaFio.startColor = dadosCor.cor;
-            linhaFio.endColor = dadosCor.cor;
-            linhaFio.positionCount = 2;
-            posicaoInicialLinha = transform.position;
-            linhaFio.SetPosition(0, posicaoInicialLinha);
-            linhaFio.SetPosition(1, posicaoInicialLinha);
-
-            // ESSENCIAL: Esconde a linha da tentativa anterior
-            linhaFio.enabled = false;
+            ColorBlock colors = btn.colors;
+            colors.normalColor = dadosCor.cor;
+            colors.highlightedColor = dadosCor.cor;
+            colors.pressedColor = dadosCor.cor * 0.8f;
+            colors.selectedColor = dadosCor.cor;
+            btn.colors = colors;
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (!ehNoInicial || conectado) return;
+        if (conectado) return;
 
-        if (linhaFio != null)
+        if (ehNoInicial)
         {
-            linhaFio.enabled = true;
-            linhaFio.SetPosition(0, transform.position);
-            linhaFio.SetPosition(1, GetWorldMousePosition());
+            ErguerFusivel();
+            gerador.SelecionarNoInicial(this);
+        }
+        else
+        {
+            gerador.TentarConectar(this);
         }
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void ErguerFusivel()
     {
-        if (!ehNoInicial || conectado) return;
-
-        if (linhaFio != null)
-        {
-            linhaFio.SetPosition(1, GetWorldMousePosition());
-        }
+        transform.localRotation = Quaternion.Euler(rotacaoErguido);
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void ResetarRotacao()
     {
-        if (!ehNoInicial || conectado) return;
-
-        // Verifica o que está debaixo do mouse ao soltar o clique
-        GameObject objetoAlvo = eventData.pointerCurrentRaycast.gameObject;
-
-        if (objetoAlvo != null)
-        {
-            WireNode noDestino = objetoAlvo.GetComponent<WireNode>();
-
-            // Valida se o destino é válido e se as cores são iguais
-            if (noDestino != null && !noDestino.ehNoInicial && !noDestino.conectado)
-            {
-                if (noDestino.corAtual.nomeCor == this.corAtual.nomeCor)
-                {
-                    // Conexão Correta!
-                    conectado = true;
-                    noDestino.ConectarFio();
-
-                    if (linhaFio != null)
-                    {
-                        linhaFio.SetPosition(1, noDestino.transform.position);
-                    }
-
-                    gerador.RegistrarConexao();
-                    return;
-                }
-            }
-        }
-
-        // Se errou ou soltou no vazio, reseta a linha
-        if (linhaFio != null)
-        {
-            linhaFio.enabled = false;
-            linhaFio.SetPosition(1, transform.position);
-        }
+        transform.localRotation = Quaternion.Euler(rotacaoDeitado);
     }
 
-    public void ConectarFio()
+    public void ConfirmarConexao()
     {
         conectado = true;
-    }
-
-    private Vector3 GetWorldMousePosition()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 10f; // Distância da câmera se for cena 2D/UI
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-        worldPos.z = 0f;
-        return worldPos;
     }
 }
