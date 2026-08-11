@@ -1,57 +1,19 @@
 using UnityEngine;
-using System.Collections;
 
-public class CreditScroll : MonoBehaviour
+public class CreditsScroll : MonoBehaviour
 {
-    public RectTransform texto;
-    public float velocidade = 50f;
-    public float atraso = 1f;
+    public GameObject creditsPanel;
+    public Animator creditsAnimator;
 
-    private Vector2 posicaoInicial;
-    private bool mover = false;
-    public RectTransform viewport;
-    public GameObject painelCreditos;
-
-    void Start()
+    public void AbrirCreditos()
     {
-        posicaoInicial = texto.anchoredPosition;
+        creditsPanel.SetActive(true);
+
+        creditsAnimator.Play("CreditsAnimation", 0, 0f);
     }
 
-    void Update()
-{
-    if (!mover)
-        return;
-
-    texto.anchoredPosition += Vector2.up * velocidade * Time.deltaTime;
-
-    // Verifica se o texto saiu completamente da tela
-    if (texto.anchoredPosition.y >
-        viewport.rect.height + texto.rect.height)
+    public void FecharCreditos()
     {
-        PararCreditos();
-        painelCreditos.SetActive(false);
-    }
-}
-
-    public void IniciarCreditos()
-    {
-        StopAllCoroutines();
-
-        texto.anchoredPosition = posicaoInicial;
-        mover = false;
-
-        StartCoroutine(Iniciar());
-    }
-
-    IEnumerator Iniciar()
-    {
-        yield return new WaitForSeconds(atraso);
-        mover = true;
-    }
-
-    public void PararCreditos()
-    {
-        StopAllCoroutines();
-        mover = false;
+        creditsPanel.SetActive(false);
     }
 }
