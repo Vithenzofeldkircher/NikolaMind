@@ -54,7 +54,10 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         isGamePaused = false;
-        SceneManager.LoadScene("telaInicial");
+
+        Destroy(gameObject);
+
+        SceneManager.LoadScene("Tela Inicial");
     }
 
     public void SairDoJogo()
