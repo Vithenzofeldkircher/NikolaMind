@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -60,18 +61,28 @@ public class PauseMenu : MonoBehaviour
 
     public void Button_SaveSlot(int slotIndex)
     {
+        Debug.Log($"[PauseMenu] Botão Save Clicado no Slot {slotIndex}");
         if (SaveManager.Instance != null)
         {
             SaveManager.Instance.SaveGame(slotIndex);
+        }
+        else
+        {
+            Debug.LogError("[PauseMenu] SaveManager.Instance é NULO!");
         }
     }
 
     public void Button_LoadSlot(int slotIndex)
     {
+        Debug.Log($"[PauseMenu] Botão Load Clicado no Slot {slotIndex}");
         if (SaveManager.Instance != null)
         {
+            Voltar(); // Primeiro despausa e reativa o tempo (Time.timeScale = 1)
             SaveManager.Instance.LoadGame(slotIndex);
-            Voltar(); // Despausa o jogo ao carregar
+        }
+        else
+        {
+            Debug.LogError("[PauseMenu] SaveManager.Instance é NULO!");
         }
     }
 
@@ -80,12 +91,17 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isGamePaused = false;
 
-        Destroy(gameObject);
+        StartCoroutine(Loading());
         SceneManager.LoadScene("Tela Inicial");
     }
 
     public void SairDoJogo()
     {
         Application.Quit();
+    }
+    IEnumerator Loading()
+    {
+        yield return new WaitUntil(() => SceneManager.GetActiveScene().name.Equals("Tela Inicial"));
+        gameObject.SetActive(false);
     }
 }
