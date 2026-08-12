@@ -3,25 +3,26 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    private static PauseMenu instance;
+    public static PauseMenu Instance { get; private set; }
 
-    public GameObject pausePanel;
+    [Header("UI References")]
+    [SerializeField] private GameObject pausePanel;
 
     public static bool isGamePaused = false;
 
-    void Awake()
+    private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -38,16 +39,40 @@ public class PauseMenu : MonoBehaviour
 
     public void AbrirPause()
     {
-        pausePanel.SetActive(true);
+        if (pausePanel != null)
+            pausePanel.SetActive(true);
+
         Time.timeScale = 0f;
         isGamePaused = true;
     }
 
     public void Voltar()
     {
-        pausePanel.SetActive(false);
         Time.timeScale = 1f;
+
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+
         isGamePaused = false;
+    }
+
+    // --- Métodos para vincular aos Botões de Save/Load da UI ---
+
+    public void Button_SaveSlot(int slotIndex)
+    {
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveGame(slotIndex);
+        }
+    }
+
+    public void Button_LoadSlot(int slotIndex)
+    {
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.LoadGame(slotIndex);
+            Voltar(); // Despausa o jogo ao carregar
+        }
     }
 
     public void IrParaMenu()
@@ -56,7 +81,6 @@ public class PauseMenu : MonoBehaviour
         isGamePaused = false;
 
         Destroy(gameObject);
-
         SceneManager.LoadScene("Tela Inicial");
     }
 
