@@ -9,23 +9,28 @@ public class PauseMenu : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject pausePanel;
 
+    [Header("Input Settings")]
+    [SerializeField] private string cancelInputButton = "Cancel"; // Mapeado para 'ESC' e botões de Pause
+
     public static bool isGamePaused = false;
+
+    #region Unity Lifecycle
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        SetupSingleton();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        HandlePauseInput();
+    }
+
+
+    private void HandlePauseInput()
+    {
+        // Alterado para GetButtonDown para suporte flexível (Teclado/Controle)
+        if (Input.GetButtonDown(cancelInputButton))
         {
             if (isGamePaused)
             {
@@ -38,60 +43,96 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    private void SetupSingleton()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    #endregion
+
+    #region Public UI Controls
+
     public void AbrirPause()
     {
-        if (pausePanel != null)
-            pausePanel.SetActive(true);
-
-        Time.timeScale = 0f;
-        isGamePaused = true;
+        SetPauseState(true);
     }
 
     public void Voltar()
     {
-        Time.timeScale = 1f;
-
-        if (pausePanel != null)
-            pausePanel.SetActive(false);
-
-        isGamePaused = false;
+        SetPauseState(false);
     }
 
-    // --- Métodos para vincular aos Botões de Save/Load da UI ---
+    private void SetPauseState(bool isPaused)
+    {
+        isGamePaused = isPaused;
+        Time.timeScale = isPaused ? 0f : 1f;
+
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(isPaused);
+        }
+    }
+
 
     public void Button_SaveSlot(int slotIndex)
     {
         Debug.Log($"[PauseMenu] Botão Save Clicado no Slot {slotIndex}");
-        if (SaveManager.Instance != null)
+
+        SaveManager manager = GetSaveManager();
+        if (manager != null)
         {
-            SaveManager.Instance.SaveGame(slotIndex);
-        }
-        else
-        {
-            Debug.LogError("[PauseMenu] SaveManager.Instance é NULO!");
+            manager.SaveGame(slotIndex);
         }
     }
 
     public void Button_LoadSlot(int slotIndex)
     {
         Debug.Log($"[PauseMenu] Botão Load Clicado no Slot {slotIndex}");
-        if (SaveManager.Instance != null)
+
+        // Fecha o painel de pause e restaura o tempo do jogo
+        Voltar();
+
+        SaveManager manager = GetSaveManager();
+        if (manager != null)
         {
-            Voltar(); // Primeiro despausa e reativa o tempo (Time.timeScale = 1)
-            SaveManager.Instance.LoadGame(slotIndex);
-        }
-        else
-        {
-            Debug.LogError("[PauseMenu] SaveManager.Instance é NULO!");
+            manager.LoadGame(slotIndex);
         }
     }
+
+    private SaveManager GetSaveManager()
+    {
+        SaveManager manager = SaveManager.Instance;
+        if (manager == null)
+        {
+            manager = FindFirstObjectByType<SaveManager>();
+        }
+
+        if (manager == null)
+        {
+            Debug.LogError("[PauseMenu] ERRO: Nenhum SaveManager foi encontrado na cena!");
+        }
+
+        return manager;
+    }
+
+    #endregion
+
+    #region Navigation Commands
 
     public void IrParaMenu()
     {
         Time.timeScale = 1f;
         isGamePaused = false;
 
-        StartCoroutine(Loading());
+        // Limpa este Canvas do DontDestroyOnLoad ao retornar ao menu principal
+        Destroy(gameObject);
         SceneManager.LoadScene("Tela Inicial");
     }
 
@@ -99,9 +140,6 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    IEnumerator Loading()
-    {
-        yield return new WaitUntil(() => SceneManager.GetActiveScene().name.Equals("Tela Inicial"));
-        gameObject.SetActive(false);
-    }
+
+    #endregion
 }
