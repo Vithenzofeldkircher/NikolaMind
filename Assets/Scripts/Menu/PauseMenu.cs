@@ -14,8 +14,6 @@ public class PauseMenu : MonoBehaviour
 
     public static bool isGamePaused = false;
 
-    #region Unity Lifecycle
-
     private void Awake()
     {
         SetupSingleton();
@@ -26,10 +24,8 @@ public class PauseMenu : MonoBehaviour
         HandlePauseInput();
     }
 
-
     private void HandlePauseInput()
     {
-        // Alterado para GetButtonDown para suporte flexível (Teclado/Controle)
         if (Input.GetButtonDown(cancelInputButton))
         {
             if (isGamePaused)
@@ -55,10 +51,6 @@ public class PauseMenu : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    #endregion
-
-    #region Public UI Controls
-
     public void AbrirPause()
     {
         SetPauseState(true);
@@ -80,7 +72,6 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-
     public void Button_SaveSlot(int slotIndex)
     {
         Debug.Log($"[PauseMenu] Botão Save Clicado no Slot {slotIndex}");
@@ -96,14 +87,27 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log($"[PauseMenu] Botão Load Clicado no Slot {slotIndex}");
 
-        // Fecha o painel de pause e restaura o tempo do jogo
-        Voltar();
-
         SaveManager manager = GetSaveManager();
         if (manager != null)
         {
-            manager.LoadGame(slotIndex);
+            // Inicia a transição fluida via Corrotina
+            StartCoroutine(LoadSlotRoutine(manager, slotIndex));
         }
+    }
+
+    private IEnumerator LoadSlotRoutine(SaveManager manager, int slotIndex)
+    {
+        // Restaura o tempo do jogo
+        Time.timeScale = 1f;
+
+        // Dispara o carregamento no SaveManager
+        manager.LoadGame(slotIndex);
+
+        // Aguarda até o final do frame para garantir que a transição e atualização de posição ocorreram
+        yield return new WaitForEndOfFrame();
+
+        // Esconde o painel e despausa a flag do menu
+        Voltar();
     }
 
     private SaveManager GetSaveManager()
@@ -122,24 +126,29 @@ public class PauseMenu : MonoBehaviour
         return manager;
     }
 
-    #endregion
-
-    #region Navigation Commands
 
     public void IrParaMenu()
     {
         Time.timeScale = 1f;
         isGamePaused = false;
 
-        // Limpa este Canvas do DontDestroyOnLoad ao retornar ao menu principal
+        StartCoroutine(IrParaMenuRoutine("Tela Inicial"));
+    }
+
+    private IEnumerator IrParaMenuRoutine(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+
+        // Aguarda até que a cena ativa seja efetivamente a 'Tela Inicial'
+        yield return new WaitUntil(() => SceneManager.GetActiveScene().name.Equals(sceneName));
+
+        // Esconde o objeto e o destrói para liberar memória
+        gameObject.SetActive(false);
         Destroy(gameObject);
-        SceneManager.LoadScene("Tela Inicial");
     }
 
     public void SairDoJogo()
     {
         Application.Quit();
     }
-
-    #endregion
 }
