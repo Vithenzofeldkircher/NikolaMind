@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement; // Necessário para trocar de cena
 
 public class SceneTransition : MonoBehaviour
 {
@@ -7,39 +8,37 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] private SlideUpEffect titleSlideEffect;
     [SerializeField] private FadeInEffect gameFadeEffect;
 
-    [Header("Elementos de UI (Opcional)")]
-    [SerializeField] private GameObject titleScreenGameObject;
-    [SerializeField] private GameObject gameContentGameObject;
+    [Header("Configuração de Cena")]
+    [SerializeField] private string nextSceneName = "SampleScene"; // Nome da cena de destino
 
-    private void Start()
+    // Chame este método quando o jogador clicar no botão "Iniciar"
+    public void StartTransition()
     {
         StartCoroutine(ExecuteSceneSequence());
     }
 
     private IEnumerator ExecuteSceneSequence()
     {
-        // 1. Executa o efeito de Slide Up no Título
+        // 1. Executa o efeito de Slide Up na Tela de Título
         if (titleSlideEffect != null)
         {
             yield return StartCoroutine(titleSlideEffect.PlayEffect());
         }
 
-        // Desativa a tela de título se necessário
-        if (titleScreenGameObject != null)
-        {
-            titleScreenGameObject.SetActive(false);
-        }
-
-        // Ativa o conteúdo do jogo
-        if (gameContentGameObject != null)
-        {
-            gameContentGameObject.SetActive(true);
-        }
-
-        // 2. Executa o efeito de Fade In do Jogo
+        // 2. Executa o efeito de Fade In (se houver painel de escurecimento)
         if (gameFadeEffect != null)
         {
             yield return StartCoroutine(gameFadeEffect.PlayEffect());
+        }
+
+        // 3. Carrega a próxima cena ("SampleScene")
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            Debug.LogError("O nome da próxima cena não foi configurado!");
         }
     }
 }
