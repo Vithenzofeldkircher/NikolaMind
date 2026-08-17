@@ -1316,7 +1316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 671800417}
-  - component: {fileID: 671800416}
+  - component: {fileID: 671800418}
   m_Layer: 0
   m_Name: Audiosourc
   m_TagString: Untagged
@@ -1324,7 +1324,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &671800416
+--- !u!4 &671800417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671800415}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.23, y: -0.65, z: 90}
+  m_LocalScale: {x: 0.009263264, y: 0.009263264, z: 0.009263264}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 987655168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &671800418
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1335,7 +1350,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 958537fa6f2a4c64088049f1209b1d5c, type: 3}
+  m_Resource: {fileID: 8300000, guid: 2e18b8c79abffb04d86de22c05420711, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1345,7 +1360,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 9.734323
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1381,7 +1396,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1411,7 +1426,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1421,21 +1436,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &671800417
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671800415}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.102635, y: -1.8719689, z: 90}
-  m_LocalScale: {x: 0.009263264, y: 0.009263264, z: 0.009263264}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 987655168}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &855330510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,16 +1680,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
-        m_MethodName: StartGameTransition
-        m_Mode: 1
+      - m_Target: {fileID: 102900000, guid: 5e57e84dee3004845a4c969d5ca08634, type: 3}
+        m_TargetAssemblyTypeName: UnityEditor.SceneAsset, UnityEditor.CoreModule
+        m_MethodName: set_name
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Mini_Game_1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1006588250
@@ -3262,7 +3262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3cd655a65fc3a47930bea53115664d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::controlSom
-  fundoMusical: {fileID: 671800416}
+  fundoMusical: {fileID: 0}
   somLigadoSprite: {fileID: 2452748761471434995, guid: 887f0fb6522d650458eebf47a2618c39, type: 3}
   somDesligadoSprite: {fileID: -7541757851318006442, guid: f47fdccf3ed93db48b3d70d3bcc53253, type: 3}
   muteImagem: {fileID: 1518389637}
@@ -3390,7 +3390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -230.66003, y: 77.99}
+  m_AnchoredPosition: {x: -230.66006, y: 77.99}
   m_SizeDelta: {x: -461.33, y: -58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788376690
