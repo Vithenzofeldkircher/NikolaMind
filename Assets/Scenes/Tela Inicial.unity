@@ -969,7 +969,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.025, y: 0.03618261}
   m_AnchorMax: {x: 0.1645, y: 0.08422294}
-  m_AnchoredPosition: {x: 3.4407349, y: -1.7454224}
+  m_AnchoredPosition: {x: 3.4406738, y: -1.7454834}
   m_SizeDelta: {x: 61.353027, y: 10.834106}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &447703815
@@ -1507,7 +1507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 23.440002, y: 1.3599854}
+  m_AnchoredPosition: {x: 23.439941, y: 1.3599854}
   m_SizeDelta: {x: 201.16, y: 151.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &924987305
@@ -1680,10 +1680,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 102900000, guid: 5e57e84dee3004845a4c969d5ca08634, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.SceneAsset, UnityEditor.CoreModule
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 523401988}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: IniciarJogo
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3390,7 +3390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -230.66006, y: 77.99}
+  m_AnchoredPosition: {x: -230.66003, y: 77.99}
   m_SizeDelta: {x: -461.33, y: -58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788376690
