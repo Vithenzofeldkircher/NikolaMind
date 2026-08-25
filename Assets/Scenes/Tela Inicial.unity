@@ -1323,7 +1323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &671800417
 Transform:
   m_ObjectHideFlags: 0
@@ -1862,7 +1862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1135396940
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1872,9 +1872,9 @@ AudioSource:
   m_GameObject: {fileID: 1135396939}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4387250549805434192, guid: a927519da45af5f40bdb0cc78c1f3a45, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 2e18b8c79abffb04d86de22c05420711, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -3262,7 +3262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3cd655a65fc3a47930bea53115664d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::controlSom
-  fundoMusical: {fileID: 0}
+  fundoMusical: {fileID: 1135396940}
   somLigadoSprite: {fileID: 2452748761471434995, guid: 887f0fb6522d650458eebf47a2618c39, type: 3}
   somDesligadoSprite: {fileID: -7541757851318006442, guid: f47fdccf3ed93db48b3d70d3bcc53253, type: 3}
   muteImagem: {fileID: 1518389637}
@@ -3390,7 +3390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -230.66003, y: 77.99}
+  m_AnchoredPosition: {x: -230.66, y: 77.99}
   m_SizeDelta: {x: -461.33, y: -58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788376690
