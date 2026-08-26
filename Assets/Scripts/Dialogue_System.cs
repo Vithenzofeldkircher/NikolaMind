@@ -20,10 +20,6 @@ public class Dialogue_System : MonoBehaviour
     public float typingSpeed = 0.03f;
     public string botaoAvancar = "Submit";
 
-    [Header("Referências de Quest")]
-    public AcceptanceManager acceptanceManager;
-    public GameObject botoesEscolha;
-
     private DialogueData currentData;
     private int currentLine = 0;
     private bool isTyping = false;
@@ -129,33 +125,7 @@ public class Dialogue_System : MonoBehaviour
     {
         isTyping = false;
         dialogoAtivo = false;
-        botoesEscolha.SetActive(true);
-    }
-
-    public void ResponderSucesso()
-    {
-        if (Points_Maneger.Instance != null)
-        {
-            Points_Maneger.Instance.AdicionarPontos(currentData.dificuldade);
-        }
-
-        LimparEFinalizar();
-    }
-
-    public void ResponderFalha()
-    {
-        if (Points_Maneger.Instance != null)
-        {
-            Points_Maneger.Instance.RemoverPontos();
-        }
-
-        LimparEFinalizar();
-    }
-
-    private void LimparEFinalizar()
-    {
-        botoesEscolha.SetActive(false);
-        Finalizar();
+    
     }
 
     private void Finalizar()
