@@ -51,10 +51,7 @@ public class Timer : MonoBehaviour
     }
 
     void Perdeu()
-
     {
-
-        ScoreManager.ResetarPontos();
         SceneManager.LoadScene(nomeDaCena);
 
     }

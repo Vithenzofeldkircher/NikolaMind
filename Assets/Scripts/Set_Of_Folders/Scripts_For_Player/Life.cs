@@ -54,13 +54,6 @@ public class Life : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Você morreu!");
-
-        // Aplica penalidade de morte
-        if (Points_Maneger.Instance != null)
-        {
-            Points_Maneger.Instance.PlayerMorreu();
-        }
 
         SceneManager.LoadScene("SampleScene");
     }
