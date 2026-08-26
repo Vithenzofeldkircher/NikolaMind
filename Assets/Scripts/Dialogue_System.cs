@@ -12,13 +12,17 @@ public class Dialogue_System : MonoBehaviour
     public TMP_Text nomeText;
     public GameObject painelDialogo;
 
+    [Header("Áudio")]
+    public AudioSource somDigitacao;
+    public AudioClip[] clipsDigitacao; 
+
     [Header("Configurações")]
     public float typingSpeed = 0.03f;
     public string botaoAvancar = "Submit";
 
     [Header("Referências de Quest")]
-    public AcceptanceManager acceptanceManager; // Arraste seu script da barra aqui
-    public GameObject botoesEscolha; // O objeto pai dos botões Sim/Não
+    public AcceptanceManager acceptanceManager;
+    public GameObject botoesEscolha;
 
     private DialogueData currentData;
     private int currentLine = 0;
@@ -71,11 +75,24 @@ public class Dialogue_System : MonoBehaviour
         avisoContinuar.SetActive(false);
         isTyping = true;
         dialogueText.text = "";
+
         foreach (char c in line)
         {
             dialogueText.text += c;
+
+            
+            if (somDigitacao != null && clipsDigitacao != null && clipsDigitacao.Length > 0 && c != ' ')
+            {
+                int indexAleatorio = UnityEngine.Random.Range(0, clipsDigitacao.Length);
+                if (clipsDigitacao[indexAleatorio] != null)
+                {
+                    somDigitacao.PlayOneShot(clipsDigitacao[indexAleatorio]);
+                }
+            }
+
             yield return new WaitForSeconds(typingSpeed);
         }
+
         isTyping = false;
         avisoContinuar.SetActive(true);
     }
@@ -97,7 +114,6 @@ public class Dialogue_System : MonoBehaviour
         }
         else
         {
-            // Se for fim de quest, mostra os botões em vez de fechar direto
             if (currentData.ehFimDeQuest)
             {
                 MostrarBotoesEscolha();
@@ -112,13 +128,12 @@ public class Dialogue_System : MonoBehaviour
     private void MostrarBotoesEscolha()
     {
         isTyping = false;
-        dialogoAtivo = false; // Trava o avanço pelo teclado
+        dialogoAtivo = false;
         botoesEscolha.SetActive(true);
     }
 
     public void ResponderSucesso()
     {
-        // Chama o ScoreManager global passando a dificuldade dos dados atuais
         if (Points_Maneger.Instance != null)
         {
             Points_Maneger.Instance.AdicionarPontos(currentData.dificuldade);
@@ -129,7 +144,6 @@ public class Dialogue_System : MonoBehaviour
 
     public void ResponderFalha()
     {
-        // Chama o ScoreManager global para aplicar a penalidade
         if (Points_Maneger.Instance != null)
         {
             Points_Maneger.Instance.RemoverPontos();
@@ -148,7 +162,7 @@ public class Dialogue_System : MonoBehaviour
     {
         dialogoAtivo = false;
         painelDialogo.SetActive(false);
-        currentLine = 0; // Reseta para o próximo diálogo
+        currentLine = 0;
         avisoContinuar.SetActive(false);
     }
 
