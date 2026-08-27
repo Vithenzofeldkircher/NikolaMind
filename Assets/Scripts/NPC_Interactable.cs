@@ -20,17 +20,4 @@ public class NPC_Interactable : MonoBehaviour, IInteractable
         }
         CursorManager.Instance.UnlockCursor();
     }
-
-    // Detecta quando o Player sai do Trigger do NPC
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            // Se o player se afastar, manda o sistema fechar o painel
-            if (sistemaDialogo != null)
-            {
-                sistemaDialogo.FecharDialogoManualmente();
-            }
-        }
-    }
 }

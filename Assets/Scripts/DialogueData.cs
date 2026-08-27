@@ -15,9 +15,4 @@ public class DialogueData : ScriptableObject
     }
 
     public List<Fala> falas = new List<Fala>();
-
-    [Header("Configurações de Quest (Opcional)")]
-    public bool ehFimDeQuest;
-    public enum Dificuldade { Nenhum, Facil, Media, Dificil }
-    public Dificuldade dificuldade;
 }

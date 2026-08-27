@@ -3326,7 +3326,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524481145}
-  - component: {fileID: 524481146}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -3349,24 +3348,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &524481146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524481143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b4b865f515aa0c4b82cace269bc83ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Points_Maneger
-  pontosAtuais: 50
-  penalidadeMorte: 20
-  pontosFacil: 5
-  pontosMedia: 15
-  pontosDificil: 30
-  penalidadeFalha: -22
 --- !u!1 &531731728
 GameObject:
   m_ObjectHideFlags: 0
@@ -10238,10 +10219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac843c4ac696c8f4dafe322e896c9753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AcceptanceManager
-  acceptanceSlider: {fileID: 1748361168}
-  fillImage: {fileID: 669515738}
-  maxAcceptance: 100
-  minAcceptance: 0
 --- !u!1 &990717818
 GameObject:
   m_ObjectHideFlags: 0
@@ -10697,7 +10674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.9000244, y: -382.372}
+  m_AnchoredPosition: {x: -0.89990234, y: -382.37207}
   m_SizeDelta: {x: 0, y: -770.026}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1123259330
@@ -12307,16 +12284,15 @@ MonoBehaviour:
   dialogueText: {fileID: 1275028256}
   nomeText: {fileID: 769988040}
   painelDialogo: {fileID: 1123259328}
+  avisoContinuar: {fileID: 963561407}
   somDigitacao: {fileID: 455602846}
   clipsDigitacao:
   - {fileID: 8300000, guid: 4ad107a24535d244db391a8a12dff594, type: 3}
   - {fileID: 8300000, guid: d947a7d6d1459ae439641fd6cec17279, type: 3}
   - {fileID: 8300000, guid: 8a7185ea76f9c57479f20ad32bf33346, type: 3}
   typingSpeed: 0.03
-  botaoAvancar: Submit
-  acceptanceManager: {fileID: 973456110}
-  botoesEscolha: {fileID: 2022353344}
-  avisoContinuar: {fileID: 963561407}
+  tempoAutoAvanco: 2
+  nomeProximaCena: 
 --- !u!1 &1463852521
 GameObject:
   m_ObjectHideFlags: 0
@@ -14122,8 +14098,8 @@ Transform:
   m_GameObject: {fileID: 1804381207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.84, y: 3.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 21.03, y: -0.37, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1436154636}
@@ -17413,8 +17389,8 @@ Transform:
   m_GameObject: {fileID: 1943602127}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.64, y: 3.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -7.61, y: -0.24, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 990717819}
